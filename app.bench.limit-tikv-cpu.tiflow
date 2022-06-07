@@ -9,13 +9,9 @@ cpu-limit|limit|l = 400%
 deploy.hosts = hosts
 bench.limit-tikv-cpu = cpu-limit
 
-[val2env]
-deploy.env.kvs.depose-after-deployed = true
-
 [flow/]
-meta.db.up : env.save
+app.bench.2step.prepares
 tpcc.config : app.bench.limit-tikv-cpu.bare
-#ycsb.config : app.bench.limit-tikv-cpu.bare
-#tpch.config : app.bench.limit-tikv-cpu.bare
-#sysbench.config : app.bench.limit-tikv-cpu.bare
+ycsb.config : app.bench.limit-tikv-cpu.bare
+sysbench.config : app.bench.limit-tikv-cpu.bare
 bench.result

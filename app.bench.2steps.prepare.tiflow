@@ -1,0 +1,18 @@
+help = auto deploy and prepare data for `app.bench.run`
+abbr = app.ben.2step|2s|2.pp
+
+[arg]
+hosts|host|h = ''
+
+[arg2env]
+deploy.hosts = hosts
+
+[env]
+bench.workload = read
+
+[flow/]
+deploy.auto depose-env=true : db.rm+new
+[[bench.workload]].load : [[bench.workload]].tag.data : br.ssh.backup mv=true
+db.rm
+meta.db.up
+env.rm bench.workload : env.save

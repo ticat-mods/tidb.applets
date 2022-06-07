@@ -1,0 +1,18 @@
+help = auto deploy and prepare common workloads' data for `app.bench.run`
+abbr = app.bench.2steps.pps
+
+[arg]
+hosts|host|h = ''
+
+[arg2env]
+deploy.hosts = hosts
+
+[flow/]
+deploy.auto depose-env=true : db.rm+new
+
+tpcc.conf : tpcc.load : tpcc.tag.data : br.ssh.backup mv=true : db.rm+new
+ycsb.conf : ycsb.load : ycsb.tag.data : br.ssh.backup mv=true : db.rm+new
+sysbench.conf : sysbench.load : sysbench.tag.data : br.ssh.backup mv=true : db.rm
+
+meta.db.up
+env.rm bench.workload : env.save

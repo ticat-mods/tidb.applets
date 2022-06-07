@@ -1,5 +1,5 @@
 help = auto deploy, run benchmark then destroy cluster
-abbr = app.depl.ben
+abbr = app.depl+ben
 
 flow = deploy.auto : tidb.rm+new : [[bench.workload]].load : [[bench.workload]].run : bench.record : db.rm
 
