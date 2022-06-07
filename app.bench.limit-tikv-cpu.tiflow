@@ -1,0 +1,20 @@
+help = compare the performance between with/without tikv cpu limitation
+abbr = app.ben.limit-kv-cpu
+
+[arg]
+hosts|host|h = ''
+tikv-cpu-limit-to|limit = 800%
+
+[arg2env]
+deploy.hosts = hosts
+
+[val2env]
+deploy.env.kvs.depose-after-deployed = true
+
+[flow/]
+meta.db.up : env.save
+tpcc.config : app.deploy+bench : deploy.set.tikv.res cpu_quota [[tikv-cpu-limit-to]] : app.deploy+bench
+
+#ycsb.config : app.deploy+bench
+#tpch.config : app.deploy+bench
+#sysbench.config : app.deploy+bench
