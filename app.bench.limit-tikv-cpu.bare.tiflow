@@ -2,9 +2,11 @@ help = compare the performance between with/without tikv cpu limitation
 
 [arg]
 cpu-limit|limit|l = ''
+workload|wl = ''
 
 [arg2env]
 bench.limit-tikv-cpu = cpu-limit
+bench.workload = workload
 
 [flow/]
 bench.set-tag tikv-cpu-limit,unlimited
