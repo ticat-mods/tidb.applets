@@ -1,7 +1,7 @@
 help = auto deploy and prepare tpcc 300wh data for `app.bench.run`
-abbr = app.bench.2steps.pp.50g
+abbr = app.2step.pp.50g
 
-flow = tpcc.conf wh=300 lt=16 : app.bench.2step.prepare
+flow = tpcc.conf wh=300 lt=16 : app.2step.prepare
 
 [arg]
 hosts|host|h = ''

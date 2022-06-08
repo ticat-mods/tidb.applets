@@ -1,5 +1,5 @@
 help = auto deploy and prepare data for `app.bench.run`
-abbr = app.ben.2step|2s|2.pp
+abbr = app.2step|2s|2.pp
 
 [arg]
 hosts|host|h = ''

@@ -1,0 +1,25 @@
+help = test if we could just 7/7.5c for tikv
+abbr = t1.limit-kv-cpu
+
+[arg]
+hosts|h = ''
+times|t = 3
+
+[arg2env]
+deploy.hosts = hosts
+
+[flow/]
+env.clean : env.reset
+
+tpcc.conf wh=120 l-t=32 dur=20m
+app.2step.prepare
+
+env.set bench.limit-tikv-cpu 700%
+tpcc.conf t=150 : repeat app.limit-kv-cpu [[times]]
+tpcc.conf t=300 : repeat app.limit-kv-cpu [[times]]
+
+env.set bench.limit-tikv-cpu 750%
+tpcc.conf t=150 : repeat app.limit-kv-cpu [[times]]
+tpcc.conf t=300 : repeat app.limit-kv-cpu [[times]]
+
+bench.result.last

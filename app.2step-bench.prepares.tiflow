@@ -1,5 +1,5 @@
 help = auto deploy and prepare common workloads' data for `app.bench.run`
-abbr = app.bench.2steps.pps
+abbr = app.2step.pps
 
 [arg]
 hosts|host|h = ''
