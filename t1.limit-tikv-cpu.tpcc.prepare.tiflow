@@ -2,13 +2,19 @@ help = prepare data for: test if we could use 7c/7.5c for 8c tikv node with tpcc
 abbr = t1.limit-kv-cpu.tpcc.pp
 trivial = 1
 
-flow = tpcc.conf wh=1000 l-t=32 dur=30m : app.2step.prepare
+flow = app.2step.prepare
 
 [arg]
 hosts|h = ''
+load-threads|load-thread|l-t|lt = 32
+warehouses|warehouse|wh = 1000
+duration|dur = 30m
 
 [arg2env]
 deploy.hosts = hosts
+bench.tpcc.load.threads = load-threads
+bench.tpcc.warehouses = warehouses
+bench.tpcc.duration = duration
 
 [val2env]
 bench.prepare.wait-secs-before-backup = 600
