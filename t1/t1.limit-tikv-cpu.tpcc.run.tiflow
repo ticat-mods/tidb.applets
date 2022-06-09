@@ -6,6 +6,7 @@ trivial = 1
 hosts|h = ''
 tags|tag = ''
 threads-list|threads = 200,400
+cpu-limit-list|limits = 700%,750%,780%
 
 [arg2env]
 deploy.hosts = hosts
@@ -13,11 +14,4 @@ bench.tpcc.threads-list = threads-list
 bench.tag.t1.limit-tikv-cpu.tpcc = tag
 
 [flow/]
-env.set bench.limit-tikv-cpu 700%
-2-step-bench.run.limit-tikv-cpu.tpcc
-
-env.set bench.limit-tikv-cpu 750%
-2-step-bench.run.limit-tikv-cpu.tpcc
-
-env.set bench.limit-tikv-cpu 780%
-2-step-bench.run.limit-tikv-cpu.tpcc
+** 2-step-bench.run.limit-tikv-cpu.tpcc [[*cpu-limit-list*]] **
