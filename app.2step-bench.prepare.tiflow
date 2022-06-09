@@ -12,7 +12,7 @@ bench.workload = read
 
 [flow/]
 deploy.auto depose-env=true : db.rm+new
-[[bench.workload]].load : [[bench.workload]].tag.data : br.ssh.backup mv=true
+[[bench.workload]].load : [[bench.workload]].tag.data : sleep 60 : br.ssh.backup mv=true
 db.rm
 meta.db.up
 env.rm bench.workload : env.save
