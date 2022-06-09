@@ -22,7 +22,6 @@ bench.workload = read
 bench.prepare.wait-secs-before-backup = read
 
 [flow/]
-break.after.gen-tiup-yaml
 deploy.auto depose-env=true
 db.rm+new
 

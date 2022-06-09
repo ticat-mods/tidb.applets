@@ -3,12 +3,15 @@ abbr = 2step.run.limit-tikv-cpu|limit-kv-cpu|lkvu
 trivial = 1
 
 [arg]
-cpu-limit|limit|l = 750%
+cpu-limit|limit|l = ''
 workload|wl = ''
 
 [arg2env]
 bench.limit-tikv-cpu = cpu-limit
 bench.workload = workload
+
+[env]
+bench.limit-tikv-cpu = read
 
 [flow/]
 bench.set-tag tikv-cpu-unlimited

@@ -13,8 +13,6 @@ bench.tpcc.threads-list = threads-list
 bench.tag.t1.limit-tikv-cpu.tpcc = tag
 
 [flow/]
-2-step-bench.run.limit-tikv-cpu.tpcc
-
 env.set bench.limit-tikv-cpu 700%
 2-step-bench.run.limit-tikv-cpu.tpcc
 

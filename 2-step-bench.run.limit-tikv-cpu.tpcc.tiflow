@@ -2,16 +2,13 @@ help = compare the performance between w/wo tikv cpu limitation by tpcc
 abbr = 2step.run.lkvu.tpcc
 trivial = 1
 
-flow = ** tpcc.conf t=[[*bench.tpcc.threads-list*]] : 2-step-bench.run.limit-kv-cpu **
+flow = ** tpcc.conf thread=[[*bench.tpcc.threads-list*]] : 2-step-bench.run.limit-kv-cpu **
 
 [arg]
-cpu-limit|limit|l = 750%
+cpu-limit|limit|l = ''
 threads-list|threads|t = 2,4
 
 hosts|h = ''
-
-[val2env]
-bench.tpcc.threads-list = --
 
 [arg2env]
 deploy.hosts = hosts
