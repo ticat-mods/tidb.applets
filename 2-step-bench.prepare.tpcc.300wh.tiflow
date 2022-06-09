@@ -1,0 +1,10 @@
+help = auto deploy and prepare tpcc 300wh data for `2-step-bench.run*`
+abbr = 2step.pp.tpcc.50g
+
+flow = tpcc.conf wh=300 lt=16 : 2-step-bench.prepare
+
+[arg]
+hosts|host|h = ''
+
+[arg2env]
+deploy.hosts = hosts

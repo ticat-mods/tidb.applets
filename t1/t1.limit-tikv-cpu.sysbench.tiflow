@@ -3,4 +3,4 @@ abbr = t1.limit-kv-cpu.sb
 trivial = 1
 
 [flow/]
-#sb.conf tables=100 table-size=6000000 l-t=32 dur=1800 : app.2step.prepare
+#sb.conf tables=100 table-size=6000000 l-t=32 dur=1800 : 2-step-bench.prepare

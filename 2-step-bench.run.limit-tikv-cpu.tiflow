@@ -1,5 +1,5 @@
 help = compare the performance between w/wo tikv cpu limitation
-abbr = app.limit-kv-cpu
+abbr = 2step.run.limit-tikv-cpu|limit-kv-cpu|lkvu
 trivial = 1
 
 [arg]
@@ -13,9 +13,9 @@ bench.workload = workload
 [flow/]
 bench.set-tag tikv-cpu-unlimited
 deploy.auto depose-env=true
-app.2step.run
+2-step-bench.run
 
 deploy.set.tikv.res cpu_quota [[bench.limit-tikv-cpu]]
 bench.set-tag tikv-cpu-[[bench.limit-tikv-cpu]]
 deploy.auto depose-env=true
-app.2step.run
+2-step-bench.run

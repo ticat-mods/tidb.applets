@@ -1,5 +1,5 @@
 help = auto deploy and prepare 10g data for common workloads
-abbr = app.2step.pps.10g
+abbr = 2step.pp.regular.10g
 
 [arg]
 hosts|host|h = ''
@@ -11,4 +11,4 @@ deploy.hosts = hosts
 tpcc.conf wh=60 lt=16
 ycsb.conf count=4000000 lt=16
 sysbench.conf tables=100 table-size=300000 lt=16
-app.2step.prepares
+2-step-bench.prepare.regulars

@@ -1,0 +1,36 @@
+help = prepare for run, usage: \
+	[workload].conf : 2-step-bench.prepare <hosts> : 2-step-bench.run.*
+
+abbr = 2step|2sb|2.pp
+trivial = 1
+
+[arg]
+hosts|host|h = ''
+wait-secs-before-backup|w = 0
+workload|wl = ''
+
+[arg2env]
+deploy.hosts = hosts
+bench.prepare.wait-secs-before-backup = wait-secs-before-backup
+bench.workload = workload
+
+[val2env]
+tidb.backup.use-mv = true
+
+[env]
+bench.workload = read
+bench.prepare.wait-secs-before-backup = read
+
+[flow/]
+break.after.gen-tiup-yaml
+deploy.auto depose-env=true
+db.rm+new
+
+[[bench.workload]].load
+[[bench.workload]].tag.data
+sleep [[bench.prepare.wait-secs-before-backup]]
+br.ssh.backup
+
+db.rm
+meta.db.up
+env.save

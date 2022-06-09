@@ -1,0 +1,21 @@
+help = auto deploy and prepare regular workloads' data for `2-step-bench.run*`
+abbr = 2step.pp.regular|common|rgl
+
+[arg]
+hosts|host|h = ''
+
+[arg2env]
+deploy.hosts = hosts
+
+[val2env]
+tidb.backup.use-mv = true
+
+[flow/]
+break.after.gen-tiup-yaml : deploy.auto depose-env=true : db.rm+new
+
+tpcc.conf : tpcc.load : tpcc.tag.data : br.ssh.backup : db.rm+new
+ycsb.conf : ycsb.load : ycsb.tag.data : br.ssh.backup : db.rm+new
+sysbench.conf : sysbench.load : sysbench.tag.data : br.ssh.backup : db.rm
+
+meta.db.up
+env.rm bench.workload : env.save

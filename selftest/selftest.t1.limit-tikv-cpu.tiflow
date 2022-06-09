@@ -1,5 +1,5 @@
 help = test `t1.limit-tikv-cpu` with minimun data
-abbr = selftest.t1.limit-kv-cpu|lkvu
+abbr = selftest.t1.limit-kv-cpu|limit-kv-cpu|lkvu
 
 tag = selftest
 
@@ -13,6 +13,6 @@ bench.prepare.wait-secs-before-backup = wait-secs-before-backup
 
 [flow/]
 tpcc.conf : sysbench.conf
-t1.limit-tikv-cpu times=1 threads=1,2 tag=selftest
+t1.limit-tikv-cpu times=1 threads=1 tag=selftest
 br.ssh.drop
 bench.result.last

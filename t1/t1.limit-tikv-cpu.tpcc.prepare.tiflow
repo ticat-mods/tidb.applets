@@ -2,7 +2,7 @@ help = prepare data for: test if we could use 7c/7.5c for 8c tikv node with tpcc
 abbr = t1.limit-kv-cpu.tpcc.pp
 trivial = 1
 
-flow = tpcc.conf : app.2step.prepare
+flow = tpcc.conf : 2-step-bench.prepare
 
 [arg]
 hosts|h = ''
