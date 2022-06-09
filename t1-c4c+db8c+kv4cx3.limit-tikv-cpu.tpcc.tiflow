@@ -1,12 +1,16 @@
-help = test if we could use 7c/7.5c for 8c tikv node
-abbr = t1.limit-kv-cpu
+help = test if we could use 7c/7.5c for 8c tikv node with tpcc
+abbr = t1.limit-kv-cpu.tpcc
 
 [arg]
 hosts|h = ''
+tags|tag = ''
 times|t = 3
+wait-secs-before-backup|w = 0
 
 [arg2env]
 deploy.hosts = hosts
+bench.tag.t1.limit-tikv-cpu.tpcc = tag
+bench.prepare.wait-secs-before-backup = wait-secs-before-backup
 
 [flow/]
 tpcc.conf wh=1000 l-t=32 dur=30m : app.2step.prepare
