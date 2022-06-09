@@ -1,5 +1,6 @@
-help = step 1 of `app.2step-bench`: auto deploy and prepare data. then we could `app.2step.run`
+help = step 1/2: auto deploy and prepare data. then we could `app.2step.run`
 abbr = app.2step|2s|2.pp
+trivial = 1
 
 [arg]
 hosts|host|h = ''

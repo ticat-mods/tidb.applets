@@ -1,0 +1,6 @@
+help = [TODO: impl] test if we could use 7c/7.5c for 8c tikv node with SysBench
+abbr = t1.limit-kv-cpu.sb
+trivial = 1
+
+[flow/]
+#sb.conf tables=100 table-size=6000000 l-t=32 dur=1800 : app.2step.prepare

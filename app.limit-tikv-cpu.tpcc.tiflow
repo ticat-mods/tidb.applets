@@ -1,0 +1,16 @@
+help = compare the performance between w/wo tikv cpu limitation by tpcc
+abbr = app.limit-kv-cpu.tpcc
+trivial = 1
+
+flow = ** tpcc.conf t=[[*bench.tpcc.threads-list*]] : app.limit-kv-cpu **
+
+[arg]
+cpu-limit|limit|l = 750%
+threads-list|threads|t = 2,4
+
+hosts|h = ''
+
+[arg2env]
+deploy.hosts = hosts
+bench.limit-tikv-cpu = cpu-limit
+bench.tpcc.threads-list = threads-list

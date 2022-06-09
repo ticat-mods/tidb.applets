@@ -1,4 +1,5 @@
 help = restore data from `app.bench.prepare*` then run benchmark
+trivial = 1
 
 flow = tidb.rm : tidb.deploy : [[bench.workload]].tag.data : br.ssh.restore : db.up : [[bench.workload]].run : bench.record : db.rm
 

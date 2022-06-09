@@ -1,0 +1,6 @@
+help = test if we could use 7c/7.5c for 8c tikv
+abbr = t1.limit-kv-cpu|lkvu
+
+[flow/]
+t1.limit-kv-cpu.tpcc
+t1.limit-kv-cpu.sysbench

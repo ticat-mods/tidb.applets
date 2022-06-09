@@ -1,0 +1,16 @@
+help = test if we could use 7c/7.5c for 8c tikv node with tpcc
+abbr = t1.limit-kv-cpu.tpcc
+trivial = 1
+
+flow = t1.limit-kv-cpu.tpcc.prepare : repeat t1.limit-kv-cpu.tpcc.run [[times]]
+
+[arg]
+hosts|h = ''
+tags|tag = ''
+times|t = 3
+threads-list|threads = 2,4
+
+[arg2env]
+deploy.hosts = hosts
+bench.tag.t1.limit-tikv-cpu.tpcc = tag
+bench.tpcc.threads-list = threads-list
