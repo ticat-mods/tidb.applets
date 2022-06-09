@@ -10,7 +10,7 @@ threads-list|threads = 200,400
 [arg2env]
 deploy.hosts = hosts
 bench.run.times = times
-bench.tag.t1.limit-tikv-cpu = tag
+bench.tag.t1.limit-tikv-cpu = tags
 bench.tpcc.threads-list = threads-list
 
 [flow/]
