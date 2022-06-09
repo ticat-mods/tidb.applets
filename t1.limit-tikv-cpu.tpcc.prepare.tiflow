@@ -16,7 +16,4 @@ deploy.hosts = hosts
 bench.tpcc.load.threads = load-threads
 bench.tpcc.warehouses = warehouses
 bench.tpcc.duration = duration
-bench.prepare.wait-secs-before-backup = wait-secs-before-backup
-
-[val2env]
-bench.prepare.wait-secs-before-backup = 600
+br.ssh.backup.wait-secs = wait-secs-before-backup
