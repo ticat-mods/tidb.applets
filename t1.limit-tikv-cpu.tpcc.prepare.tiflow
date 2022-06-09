@@ -9,12 +9,14 @@ hosts|h = ''
 load-threads|load-thread|l-t|lt = 32
 warehouses|warehouse|wh = 1000
 duration|dur = 30m
+wait-secs-before-backup|w = 0
 
 [arg2env]
 deploy.hosts = hosts
 bench.tpcc.load.threads = load-threads
 bench.tpcc.warehouses = warehouses
 bench.tpcc.duration = duration
+bench.prepare.wait-secs-before-backup = wait-secs-before-backup
 
 [val2env]
 bench.prepare.wait-secs-before-backup = 600

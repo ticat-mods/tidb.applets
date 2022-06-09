@@ -1,6 +1,18 @@
 help = test if we could use 7c/7.5c for 8c tikv
 abbr = t1.limit-kv-cpu|lkvu
 
+[arg]
+hosts|h = ''
+tags|tag = ''
+times|t = 3
+threads-list|threads = 200,400
+
+[arg2env]
+deploy.hosts = hosts
+bench.run.times = times
+bench.tag.t1.limit-tikv-cpu = tag
+bench.tpcc.threads-list = threads-list
+
 [flow/]
 t1.limit-kv-cpu.tpcc
 t1.limit-kv-cpu.sysbench
