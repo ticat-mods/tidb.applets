@@ -12,6 +12,7 @@ cpu-limit-list|limits = 700%,750%,780%
 deploy.hosts = hosts
 bench.tpcc.threads-list = threads-list
 bench.tag.t1.limit-tikv-cpu.tpcc = tag
+bench.tikv-cpu-limit-list = cpu-limit-list
 
 [flow/]
-** 2-step-bench.run.limit-tikv-cpu.tpcc [[*cpu-limit-list*]] **
+** 2-step-bench.run.limit-tikv-cpu.tpcc [[*bench.tikv-cpu-limit-list*]] **

@@ -9,9 +9,11 @@ hosts|h = ''
 tags|tag = ''
 times|t = 3
 threads-list|threads = 200,400
+cpu-limit-list|limits = 700%,750%,780%
 
 [arg2env]
 deploy.hosts = hosts
 bench.run.times = times
 bench.tag.t1.limit-tikv-cpu.tpcc = tag
 bench.tpcc.threads-list = threads-list
+bench.tikv-cpu-limit-list = cpu-limit-list
