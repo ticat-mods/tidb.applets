@@ -4,13 +4,15 @@ abbr = selftest.t1.limit-kv-cpu|lkvu
 tag = selftest
 
 [arg]
+hosts|host|h = 127.0.0.1
 wait-secs-before-backup|w = 0
 
 [arg2env]
-env.set bench.prepare.wait-secs-before-backup = wait-secs-before-backup
+deploy.hosts = hosts
+bench.prepare.wait-secs-before-backup = wait-secs-before-backup
 
 [flow/]
 tpcc.conf : sysbench.conf
-t1.limit-tikv-cpu h=127.0.0.1 times=1 threads=1,2 tag=selftest
+t1.limit-tikv-cpu times=1 threads=1,2 tag=selftest
 br.ssh.drop
 bench.result.last
