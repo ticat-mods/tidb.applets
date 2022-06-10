@@ -1,20 +1,20 @@
-help = test if we could use 7c/7.5c for 8c tikv
+help = test if we could use 3.5c/3.75c for 4c tikv
 abbr = t1.limit-kv-cpu|lkvu
 
 [arg]
 hosts|h = ''
 tags|tag = ''
-times|t = 3
-threads-list|threads = 200,400
-cpu-limit-list|limits = 700%,750%,780%
+times = 3
+threads|thread|t = 200
+cpu-limit-list|limits = 360%,380%,400%
 
 [arg2env]
 deploy.hosts = hosts
-bench.run.times = times
-bench.tag.t1.limit-tikv-cpu = tags
+bench.tag.t1.lkvu = tags
 bench.tpcc.threads-list = threads-list
 bench.tikv-cpu-limit-list = cpu-limit-list
+bench.tpcc.threads = threads
 
 [flow/]
-t1.limit-kv-cpu.tpcc
+t1.limit-kv-cpu.tpcc times=[[times]]
 t1.limit-kv-cpu.sysbench

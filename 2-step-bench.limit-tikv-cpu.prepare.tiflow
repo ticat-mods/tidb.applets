@@ -1,7 +1,8 @@
-help = prepare for run, usage: \
-	[workload].conf : 2-step-bench.prepare <hosts> : 2-step-bench.run.*
+help = prepare for `2step.limit-kv-cpu.run`, usage: \
+	[workload].conf : 2step.limit-kv-cpu.prepare <hosts> : 2step.limit-kv-cpu.run.*
 
-abbr = 2step|2sb|2.pp
+abbr = 2step.limit-tikv-cpu|limit-kv-cpu|lkvu.pp
+
 trivial = 1
 
 [arg]

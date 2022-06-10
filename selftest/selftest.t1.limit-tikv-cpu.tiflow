@@ -10,14 +10,12 @@ hosts|host|h = 127.0.0.1
 deploy.hosts = hosts
 
 [val2env]
-bench.prepare.wait-secs-before-backup = 0
+br.ssh.backup.wait-secs = 0
 bench.tag.t1.limit-tikv-cpu = selftest
 bench.run.times = 1
-bench.tpcc.threads-list = 1
-bench.tikv-cpu-limit-list = 400%
+bench.tikv-cpu-limit-list = 200%,400%
 
 [flow/]
 tpcc.conf : sysbench.conf
-t1.limit-tikv-cpu
-br.ssh.drop
+t1.limit-tikv-cpu thread=1 times=1
 bench.result.last
