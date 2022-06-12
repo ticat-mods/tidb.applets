@@ -1,0 +1,7 @@
+help = setup tidb config on aws c5.4xlarge
+abbr = deploy.conf.c5-4x.tidb
+trivial = 3
+
+[flow/]
+deploy.set.tidb.config mem-quota-query 2147483648
+deploy.set.tidb.config performance.txn-total-size-limit 4294967296
