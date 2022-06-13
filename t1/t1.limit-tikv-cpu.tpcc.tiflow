@@ -10,7 +10,9 @@ tags|tag = ''
 times = 3
 cpu-limit-list|limits|l = 360%,380%,400%
 threads|thread|t = 200
+pd-with-tikv = true
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
 bench.tag.t1.lkvu.tpcc = tags
+deploy.hint.pd-with-tikv = pd-with-tikv

@@ -8,8 +8,10 @@ flow = ** deploy.conf.t1 : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-lim
 tags|tag = ''
 cpu-limit-list|limits|l = 360%,380%,400%
 threads|thread|t = 200
+pd-with-tikv = true
 
 [arg2env]
+deploy.hint.pd-with-tikv = pd-with-tikv
 bench.tikv-cpu-limit-list = cpu-limit-list
 bench.tag.t1.lkvu.tpcc = tags
 bench.tpcc.threads = threads

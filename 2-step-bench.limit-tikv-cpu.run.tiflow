@@ -6,7 +6,7 @@ trivial = 1
 cpu-limit|limit|l = ''
 
 [flow/]
-deploy.set.tikv.res cpu_quota [[cpu-limit]]
 bench.set-tag tikv-cpu-[[cpu-limit]]
+deploy.set.tikv.res cpu_quota [[cpu-limit]]
 deploy.auto depose-env=true
 2-step-bench.run
