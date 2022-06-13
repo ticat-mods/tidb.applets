@@ -2,7 +2,7 @@ help = run benchmark: test if we could use 3.5c/3.75c for 4c tikv node with tpcc
 abbr = t1.limit-kv-cpu.tpcc.run
 trivial = 1
 
-flow = ** deploy.conf.t1 : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
+flow = ** deploy.conf.t1 : tpcc.conf : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
 
 [arg]
 tags|tag = ''
