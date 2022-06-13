@@ -5,13 +5,19 @@ trivial = 1
 flow = ** deploy.conf.t1 : tpcc.conf : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
 
 [arg]
+hosts|h = ''
 tags|tag = ''
 cpu-limit-list|limits|l = 360%,380%,400%
 threads|thread|t = 200
+duration|dur = 30m
+warehouses|warehouse|wh = 1
 pd-with-tikv = true
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
 bench.tpcc.threads = threads
-deploy.hint.pd-with-tikv = pd-with-tikv
+bench.tpcc.duration = duration
+bench.tpcc.warehouses = warehouses
+deploy.hosts = hosts
 bench.tag.t1.lkvu.tpcc = tags
+deploy.hint.pd-with-tikv = pd-with-tikv

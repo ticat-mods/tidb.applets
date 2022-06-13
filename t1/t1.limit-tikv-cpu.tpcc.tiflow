@@ -23,7 +23,6 @@ deploy.hint.pd-with-tikv = pd-with-tikv
 
 [flow/]
 deploy.conf.t1
-2-step-bench.conf wait-secs-before-backup=600
 tpcc.conf
 2-step-bench.limit-kv-cpu.prepare
 repeat t1.limit-kv-cpu.tpcc.run [[times]]
