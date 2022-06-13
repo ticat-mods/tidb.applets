@@ -1,6 +1,6 @@
 help = setup tikv config on aws c5.2xlarge
 abbr = deploy.conf.c5-2x.tikv
-trivial = 3
+trivial = 9
 
 [flow/]
 deploy.set.tikv.config server.grpc-concurrency 3

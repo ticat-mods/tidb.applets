@@ -1,6 +1,6 @@
 help = setup tidb config on aws c5.4xlarge
 abbr = deploy.conf.c5-4x.tidb
-trivial = 3
+trivial = 9
 
 [flow/]
 deploy.set.tidb.config mem-quota-query 2147483648
