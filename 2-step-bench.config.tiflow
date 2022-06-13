@@ -1,0 +1,9 @@
+help = config 2-step-bench behavior
+abbr = 2-step-bench.conf
+tag = config
+
+[arg]
+env-save-subflow|env-save = env.save
+
+[arg2env]
+2-step-bench.subflow.env-save = env-save-subflow

@@ -16,6 +16,7 @@ bench.run.times = 1
 bench.tikv-cpu-limit-list = 200%,400%
 
 [flow/]
+2-step-bench.conf.not-save-env
 tpcc.conf : sysbench.conf
 t1.limit-tikv-cpu thread=1 times=1
 bench.result.last

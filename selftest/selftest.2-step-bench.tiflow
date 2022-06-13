@@ -3,6 +3,7 @@ abbr = selftest.2step|2sb|2
 tag = selftest
 
 [flow/]
+2-step-bench.conf.not-save-env
 2-step-bench.prepare.regulars 127.0.0.1
 tpcc.conf     : 2-step-bench.run
 sysbench.conf : 2-step-bench.run

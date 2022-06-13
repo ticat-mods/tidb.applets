@@ -8,11 +8,13 @@ trivial = 1
 hosts|host|h = ''
 wait-secs-before-backup|w = 0
 workload|wl = ''
+env-save-subflow|env-save = env.save
 
 [arg2env]
 deploy.hosts = hosts
 br.ssh.backup.wait-secs = wait-secs-before-backup
 bench.workload = workload
+2-step-bench.subflow.env-save = env-save-subflow
 
 [val2env]
 tidb.backup.use-mv = true
@@ -30,4 +32,4 @@ br.ssh.backup
 
 db.rm
 meta.db.up
-env.save
+[[2-step-bench.subflow.env-save]]
