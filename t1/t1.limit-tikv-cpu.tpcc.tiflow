@@ -2,16 +2,28 @@ help = test if we could use 3.5c/3.75c for 4c tikv node with tpcc
 abbr = t1.limit-kv-cpu.tpcc
 trivial = 1
 
-flow = deploy.conf.t1 : tpcc.conf wh=1000 lt=32 thread=200 : 2-step-bench.limit-kv-cpu.prepare : repeat t1.limit-kv-cpu.tpcc.run [[times]]
-
 [arg]
 hosts|h = ''
 tags|tag = ''
 times = 3
 cpu-limit-list|limits|l = 360%,380%,400%
+threads|thread|t = 200
+duration|dur = 30m
+warehouses|warehouse|wh = 1
 pd-with-tikv = true
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
+bench.tpcc.threads = threads
+bench.tpcc.duration = duration
+bench.tpcc.warehouses = warehouses
+deploy.hosts = hosts
 bench.tag.t1.lkvu.tpcc = tags
 deploy.hint.pd-with-tikv = pd-with-tikv
+
+[flow/]
+deploy.conf.t1
+2-step-bench.conf wait-secs-before-backup=600
+tpcc.conf
+2-step-bench.limit-kv-cpu.prepare
+repeat t1.limit-kv-cpu.tpcc.run [[times]]

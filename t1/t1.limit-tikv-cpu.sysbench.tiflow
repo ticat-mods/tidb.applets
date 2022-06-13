@@ -1,6 +1,33 @@
-help = [TODO: impl] test if we could use 7c/7.5c for 8c tikv node with SysBench
+help = test if we could use 3.5c/3.75c for 4c tikv node with SysBench
 abbr = t1.limit-kv-cpu.sb
 trivial = 1
 
+[arg]
+hosts|h = ''
+tags|tag = ''
+times = 3
+cpu-limit-list|limits|l = 360%,380%,400%
+load-threads|load-thread|lt = 16
+threads|thread|t = 100
+tables|table|tb = 100
+table-size|size|ts = 6000000
+duration|dur = 1800
+pd-with-tikv = true
+
+[arg2env]
+bench.tikv-cpu-limit-list = cpu-limit-list
+bench.sysbench.load.threads = load-threads
+bench.sysbench.threads = threads
+bench.sysbench.tables = tables
+bench.sysbench.table-size = table-size
+bench.sysbench.duration = run-duration-secs
+deploy.hosts = hosts
+bench.tag.t1.lkvu.sysbench = tags
+deploy.hint.pd-with-tikv = pd-with-tikv
+
 [flow/]
-#sb.conf tables=100 table-size=6000000 l-t=32 dur=1800 : 2-step-bench.prepare
+deploy.conf.t1
+2-step-bench.conf wait-secs-before-backup=600
+sysbench.conf
+2-step-bench.limit-kv-cpu.prepare
+repeat t1.limit-kv-cpu.sysbench.run [[times]]

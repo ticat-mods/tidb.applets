@@ -4,6 +4,8 @@ tag = config
 
 [arg]
 env-save-subflow|env-save = env.save
+wait-secs-before-backup|w = 0
 
 [arg2env]
 2-step-bench.subflow.env-save = env-save-subflow
+br.ssh.backup.wait-secs = wait-secs-before-backup

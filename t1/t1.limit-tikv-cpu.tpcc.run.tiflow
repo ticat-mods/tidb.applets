@@ -11,7 +11,7 @@ threads|thread|t = 200
 pd-with-tikv = true
 
 [arg2env]
-deploy.hint.pd-with-tikv = pd-with-tikv
 bench.tikv-cpu-limit-list = cpu-limit-list
-bench.tag.t1.lkvu.tpcc = tags
 bench.tpcc.threads = threads
+deploy.hint.pd-with-tikv = pd-with-tikv
+bench.tag.t1.lkvu.tpcc = tags
