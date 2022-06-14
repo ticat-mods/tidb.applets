@@ -20,4 +20,5 @@ bench.tikv-cpu-limit-list = 200%,400%
 tpcc.conf wh=1 t=1 lt=1 dur=1m
 sysbench.conf tables=1 table-size=1000 t=1 lt=1 dur=60
 t1.limit-tikv-cpu times=1
+env.snapshot.rm selftest-t1-lkvu
 bench.result.last
