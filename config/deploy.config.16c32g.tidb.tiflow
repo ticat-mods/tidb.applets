@@ -1,5 +1,4 @@
-help = setup tidb config on aws c5.4xlarge
-abbr = deploy.conf.c5-4x.tidb
+help = setup tidb config on 8c16g nodes
 trivial = 9
 
 [flow/]

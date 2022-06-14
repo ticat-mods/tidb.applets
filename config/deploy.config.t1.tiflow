@@ -2,4 +2,4 @@ help = setup cluster config for t1 topology
 abbr = deploy.conf.t1
 trivial = 6
 
-flow = deploy.conf.c5-2x.tikv : deploy.conf.c5-4x.tidb
+flow = deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb

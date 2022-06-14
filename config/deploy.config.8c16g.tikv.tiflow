@@ -1,0 +1,11 @@
+help = setup tikv config on 4c8g nodes
+trivial = 9
+
+[flow/]
+deploy.set.tikv.config server.grpc-concurrency 3
+deploy.set.tikv.config raftstore.apply-pool-size 1
+deploy.set.tikv.config raftstore.store-pool-size 1
+deploy.set.tikv.config rocksdb.defaultcf.max-write-buffer-number 10
+deploy.set.tikv.config rocksdb.writecf.max-write-buffer-number 10
+deploy.set.tikv.config rocksdb.lockcf.max-write-buffer-number 10
+deploy.set.tikv.config storage.io-rate-limit.max-bytes-per-sec 301465600

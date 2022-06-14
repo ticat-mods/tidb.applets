@@ -1,5 +1,4 @@
-help = setup tikv config on aws c5.2xlarge
-abbr = deploy.conf.c5-2x.tikv
+help = setup tikv config on 4c8g nodes
 trivial = 9
 
 [flow/]
