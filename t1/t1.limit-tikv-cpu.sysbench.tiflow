@@ -31,5 +31,5 @@ bench.tag.t1.lkvu.sysbench = tags
 deploy.conf.t1
 2-step-bench.conf wait-secs-before-backup=600
 sysbench.conf
-2-step-bench.limit-kv-cpu.prepare
+2-step-bench.prepare
 repeat t1.limit-kv-cpu.sysbench.run [[times]]

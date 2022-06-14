@@ -28,5 +28,5 @@ deploy.hint.pd-with-tikv = pd-with-tikv
 [flow/]
 deploy.conf.t1
 tpcc.conf analyze=true
-2-step-bench.limit-kv-cpu.prepare
+2-step-bench.prepare
 repeat t1.limit-kv-cpu.tpcc.run [[times]]
