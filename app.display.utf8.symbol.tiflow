@@ -1,0 +1,4 @@
+help = use utf8 symbol display by default
+abbr = app.disp.utf.symbols|symbals|symbal|sym
+
+flow = display.utf8.sym : env.save : echo "[\\:)] use utf8 symbol display"

@@ -1,0 +1,4 @@
+help = not use utf8 symbol display by default
+abbr = app.disp.utf.sym.off
+
+flow = display.utf8.sym.off : env.save : echo "[\\:)] not use utf8 symbol display"
