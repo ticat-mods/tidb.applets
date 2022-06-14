@@ -5,7 +5,7 @@ trivial = 1
 [arg]
 tags|tag = ''
 cpu-limit-list|limits|l = 360%,380%,400%
-threads|thread|t = 100
+threads|thread|t = 200
 tables|table|tb = 100
 table-size|size|ts = 6000000
 run-duration-secs|duration|dur = 1800
