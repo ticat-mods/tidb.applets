@@ -10,7 +10,7 @@ tables|table|tb = 250
 table-size|size|ts = 6000000
 run-duration-secs|duration|dur = 1800
 pd-with-tikv = true
-env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-tpcc
+env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-sb
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
