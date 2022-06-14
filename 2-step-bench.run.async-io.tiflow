@@ -11,6 +11,6 @@ env-snapshot-name|env = 2sb-aio
 
 [flow/]
 bench.set-tag aio-pool-size-[[store-io-pool-size]]
-deploy.set.tikv.conf store-io-pool-size [[store-io-pool-size]]
+deploy.set.tikv.conf raftstore.store-io-pool-size [[store-io-pool-size]]
 deploy.auto depose-env=true
 2-step-bench.run
