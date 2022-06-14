@@ -1,0 +1,40 @@
+help = compare async-io performance on t1 deployment
+abbr = t1.aio.tpcc
+trivial = 1
+
+[arg]
+hosts|h = ''
+tags|tag = ''
+times = 5
+threads|thread|t = 200
+load-threads|load-thread|l-t|lt = 16
+duration|dur = 30m
+warehouses|warehouse|wh = 1000
+pd-with-tikv = true
+env-snapshot-name|env = 2sb-aio-tpcc
+
+[arg2env]
+bench.tpcc.threads = threads
+bench.tpcc.load.threads = load-threads
+bench.tpcc.duration = duration
+bench.tpcc.warehouses = warehouses
+deploy.hosts = hosts
+bench.tag.t1.lkvu.tpcc = tags
+deploy.hint.pd-with-tikv = pd-with-tikv
+2-step-bench.env.snapshot = env-snapshot-name
+
+[flow/]
+deploy.conf.t1
+tpcc.conf analyze=true
+2-step-bench.prepare
+
+2-step-bench.run.aio 0
+2-step-bench.run.aio 1
+2-step-bench.run.aio 0
+2-step-bench.run.aio 1
+2-step-bench.run.aio 0
+2-step-bench.run.aio 1
+2-step-bench.run.aio 0
+2-step-bench.run.aio 1
+2-step-bench.run.aio 0
+2-step-bench.run.aio 1
