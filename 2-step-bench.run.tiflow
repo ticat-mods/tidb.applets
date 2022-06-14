@@ -1,13 +1,26 @@
 help = restore data from `2-step-bench.prepare*` then run benchmark
 trivial = 1
 
-flow = tidb.rm : tidb.deploy : [[bench.workload]].tag.data : br.ssh.restore : db.up : [[bench.workload]].run : bench.record : db.rm
-
 [arg]
 workload|wl = ''
+env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-def
 
 [arg2env]
 bench.workload = workload
+2-step-bench.env.snapshot = env-snapshot-name
 
 [env]
 bench.workload = read
+
+[flow/]
+env.snapshot.load.non-exist [[2-step-bench.env.snapshot]]
+
+tidb.rm
+tidb.deploy
+[[bench.workload]].tag.data
+br.ssh.restore
+db.up
+
+[[bench.workload]].run
+bench.record
+db.rm
