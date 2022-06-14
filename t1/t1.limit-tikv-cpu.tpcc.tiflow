@@ -12,6 +12,7 @@ load-threads|load-thread|l-t|lt = 16
 duration|dur = 30m
 warehouses|warehouse|wh = 1000
 pd-with-tikv = true
+env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-tpcc
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
@@ -22,6 +23,7 @@ bench.tpcc.warehouses = warehouses
 deploy.hosts = hosts
 bench.tag.t1.lkvu.tpcc = tags
 deploy.hint.pd-with-tikv = pd-with-tikv
+2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
 deploy.conf.t1

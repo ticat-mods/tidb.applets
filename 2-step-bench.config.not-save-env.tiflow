@@ -1,9 +1,0 @@
-help = not save env after 2-step-bench.prepare.*
-abbr = 2-step-bench.conf.not-save-env
-tag = config
-
-[arg]
-env-save-subflow|env-save = noop
-
-[arg2env]
-2-step-bench.subflow.env-save = env-save-subflow

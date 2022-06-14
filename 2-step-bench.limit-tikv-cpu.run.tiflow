@@ -4,8 +4,13 @@ trivial = 1
 
 [arg]
 cpu-limit|limit|l = ''
+env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-def
+
+[arg2env]
+2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
+env.snapshot.load.non-exist [[2-step-bench.env.snapshot]]
 bench.set-tag tikv-cpu-[[cpu-limit]]
 deploy.set.tikv.res cpu_quota [[cpu-limit]]
 deploy.auto depose-env=true

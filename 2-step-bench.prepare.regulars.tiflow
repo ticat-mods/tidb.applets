@@ -3,11 +3,11 @@ abbr = 2step.pp.regular|common|rgl
 
 [arg]
 hosts|host|h = ''
-env-save-subflow|env-save = env.rm bench.workload : env.save
+env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-def
 
 [arg2env]
 deploy.hosts = hosts
-2-step-bench.subflow.env-save = env-save-subflow
+2-step-bench.env.snapshot = env-snapshot-name
 
 [val2env]
 tidb.backup.use-mv = true
@@ -20,4 +20,4 @@ ycsb.conf : ycsb.load : ycsb.tag.data : br.ssh.backup : db.rm+new
 sysbench.conf : sysbench.load : sysbench.tag.data : br.ssh.backup : db.rm
 
 meta.db.up
-[[2-step-bench.subflow.env-save]]
+env.snapshot.save [[2-step-bench.env.snapshot]]

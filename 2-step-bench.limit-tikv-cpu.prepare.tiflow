@@ -9,13 +9,13 @@ trivial = 1
 hosts|host|h = ''
 wait-secs-before-backup|w = 0
 workload|wl = ''
-env-save-subflow|env-save = env.save
+env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-def
 
 [arg2env]
 deploy.hosts = hosts
 br.ssh.backup.wait-secs = wait-secs-before-backup
 bench.workload = workload
-2-step-bench.subflow.env-save = env-save-subflow
+2-step-bench.env.snapshot = env-snapshot-name
 
 [val2env]
 tidb.backup.use-mv = true
@@ -33,4 +33,4 @@ br.ssh.backup
 
 db.rm
 meta.db.up
-[[2-step-bench.subflow.env-save]]
+env.snapshot.save [[2-step-bench.env.snapshot]]

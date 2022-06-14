@@ -10,6 +10,7 @@ tables|table|tb = 100
 table-size|size|ts = 6000000
 run-duration-secs|duration|dur = 1800
 pd-with-tikv = true
+env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-tpcc
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
@@ -19,6 +20,7 @@ bench.sysbench.table-size = table-size
 bench.sysbench.duration = run-duration-secs
 deploy.hint.pd-with-tikv = pd-with-tikv
 bench.tag.t1.lkvu.sysbench = tags
+2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
 ** deploy.conf.t1 : sysbench.conf test=oltp_point_select     : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
