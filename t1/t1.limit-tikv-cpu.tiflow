@@ -4,8 +4,9 @@ abbr = t1.limit-kv-cpu|lkvu
 [arg]
 hosts|h = ''
 tags|tag = ''
-times = 3
-threads|thread|t = 200
+times = 5
+tpcc-threads|tpcc-thread|tpcc-t = 200
+sysbench-threads|sysbench-thread|sysbench-t|sb-t = 100
 cpu-limit-list|limits = 360%,380%,400%
 
 [arg2env]
@@ -13,8 +14,9 @@ deploy.hosts = hosts
 bench.tag.t1.lkvu = tags
 bench.tpcc.threads-list = threads-list
 bench.tikv-cpu-limit-list = cpu-limit-list
-bench.tpcc.threads = threads
+bench.tpcc.threads = tpcc-threads
+bench.sysbench.threads = sysbench-threads
 
 [flow/]
 t1.limit-kv-cpu.tpcc times=[[times]]
-t1.limit-kv-cpu.sysbench
+t1.limit-kv-cpu.sysbench times=[[times]]

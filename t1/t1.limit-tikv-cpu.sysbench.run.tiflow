@@ -5,7 +5,7 @@ trivial = 1
 [arg]
 tags|tag = ''
 cpu-limit-list|limits|l = 360%,380%,400%
-threads|thread|t = 200
+threads|thread|t = 100
 pd-with-tikv = true
 
 [arg2env]

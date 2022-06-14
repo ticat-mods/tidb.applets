@@ -5,16 +5,18 @@ trivial = 1
 [arg]
 hosts|h = ''
 tags|tag = ''
-times = 3
+times = 5
 cpu-limit-list|limits|l = 360%,380%,400%
 threads|thread|t = 200
+load-threads|load-thread|l-t|lt = 16
 duration|dur = 30m
-warehouses|warehouse|wh = 1
+warehouses|warehouse|wh = 1000
 pd-with-tikv = true
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
 bench.tpcc.threads = threads
+bench.tpcc.load.threads = load-threads
 bench.tpcc.duration = duration
 bench.tpcc.warehouses = warehouses
 deploy.hosts = hosts
@@ -23,6 +25,6 @@ deploy.hint.pd-with-tikv = pd-with-tikv
 
 [flow/]
 deploy.conf.t1
-tpcc.conf
+tpcc.conf analyze=true
 2-step-bench.limit-kv-cpu.prepare
 repeat t1.limit-kv-cpu.tpcc.run [[times]]

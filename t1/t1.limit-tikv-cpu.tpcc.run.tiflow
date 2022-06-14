@@ -10,7 +10,7 @@ tags|tag = ''
 cpu-limit-list|limits|l = 360%,380%,400%
 threads|thread|t = 200
 duration|dur = 30m
-warehouses|warehouse|wh = 1
+warehouses|warehouse|wh = 1000
 pd-with-tikv = true
 
 [arg2env]

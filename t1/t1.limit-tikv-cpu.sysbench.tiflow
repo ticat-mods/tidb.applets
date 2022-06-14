@@ -5,7 +5,7 @@ trivial = 1
 [arg]
 hosts|h = ''
 tags|tag = ''
-times = 3
+times = 5
 cpu-limit-list|limits|l = 360%,380%,400%
 load-threads|load-thread|lt = 16
 threads|thread|t = 100
