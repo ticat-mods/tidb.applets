@@ -1,10 +1,10 @@
 help = compare the performance between w/wo tikv cpu limitation
-abbr = 2step.limit-tikv-cpu|limit-kv-cpu|lkvu.run
+abbr = 2step.run.limit-kv-cpu|lkvu
 trivial = 1
 
 [arg]
 cpu-limit|limit|l = ''
-env-snapshot-name|env = 2sb-lkvu-def
+env-snapshot-name|env = 2sb-lkvu
 
 [arg2env]
 2-step-bench.env.snapshot = env-snapshot-name

@@ -23,7 +23,7 @@ bench.tag.t1.lkvu.sysbench = tags
 2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
-** deploy.conf.t1 : sysbench.conf test=oltp_point_select     : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
-** deploy.conf.t1 : sysbench.conf test=oltp_update_index     : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
-** deploy.conf.t1 : sysbench.conf test=oltp_update_non_index : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
-** deploy.conf.t1 : sysbench.conf test=oltp_read_write       : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
+** deploy.conf.t1 : sysbench.conf test=oltp_point_select     : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** deploy.conf.t1 : sysbench.conf test=oltp_update_index     : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** deploy.conf.t1 : sysbench.conf test=oltp_update_non_index : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** deploy.conf.t1 : sysbench.conf test=oltp_read_write       : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **

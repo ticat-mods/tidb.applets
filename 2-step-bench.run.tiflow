@@ -3,7 +3,7 @@ trivial = 1
 
 [arg]
 workload|wl = ''
-env-snapshot-name|env = 2sb-def
+env-snapshot-name|env = 2sb
 
 [arg2env]
 bench.workload = workload
