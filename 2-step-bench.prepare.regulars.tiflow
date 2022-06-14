@@ -3,7 +3,7 @@ abbr = 2step.pp.regular|common|rgl
 
 [arg]
 hosts|host|h = ''
-env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-def
+env-snapshot-name|env = 2sb-def
 
 [arg2env]
 deploy.hosts = hosts

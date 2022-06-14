@@ -4,7 +4,7 @@ trivial = 1
 
 [arg]
 cpu-limit|limit|l = ''
-env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-def
+env-snapshot-name|env = 2sb-lkvu-def
 
 [arg2env]
 2-step-bench.env.snapshot = env-snapshot-name

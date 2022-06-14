@@ -12,7 +12,7 @@ load-threads|load-thread|l-t|lt = 16
 duration|dur = 30m
 warehouses|warehouse|wh = 1000
 pd-with-tikv = true
-env-snapshot-name|snapshot-name|snapshot|env-name|env|ss = 2sb-lkvu-tpcc
+env-snapshot-name|env = 2sb-lkvu-tpcc
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
