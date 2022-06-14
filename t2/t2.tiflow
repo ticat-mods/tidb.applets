@@ -1,0 +1,2 @@
+help = applets or jobs for topology: client(8c)*1 + tidb(16c)*1 + tikv(8c)*3
+abbr = t2-c8c+db16c+kv8cx3

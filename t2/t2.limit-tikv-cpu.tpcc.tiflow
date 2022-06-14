@@ -1,0 +1,30 @@
+help = test if we could use 7.5c/7.75c for 7c tikv node with tpcc
+abbr = t2.limit-kv-cpu.tpcc
+trivial = 1
+
+[arg]
+hosts|h = ''
+tags|tag = ''
+times = 5
+cpu-limit-list|limits|l = 760%,775%,800%
+threads|thread|t = 300
+load-threads|load-thread|l-t|lt = 32
+duration|dur = 30m
+warehouses|warehouse|wh = 2500
+pd-with-tikv = true
+
+[arg2env]
+bench.tikv-cpu-limit-list = cpu-limit-list
+bench.tpcc.threads = threads
+bench.tpcc.load.threads = load-threads
+bench.tpcc.duration = duration
+bench.tpcc.warehouses = warehouses
+deploy.hosts = hosts
+bench.tag.t2.lkvu.tpcc = tags
+deploy.hint.pd-with-tikv = pd-with-tikv
+
+[flow/]
+deploy.conf.t2
+tpcc.conf analyze=true
+2-step-bench.limit-kv-cpu.prepare
+repeat t2.limit-kv-cpu.tpcc.run [[times]]

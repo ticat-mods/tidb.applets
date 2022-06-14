@@ -1,0 +1,33 @@
+help = test if we could use 7.5c/7.75c for 8c tikv node with SysBench
+abbr = t2.limit-kv-cpu.sb
+trivial = 1
+
+[arg]
+hosts|h = ''
+tags|tag = ''
+times = 5
+cpu-limit-list|limits|l = 760%,775%,800%
+load-threads|load-thread|lt = 32
+threads|thread|t = 200
+tables|table|tb = 250
+table-size|size|ts = 6000000
+duration|dur = 1800
+pd-with-tikv = true
+
+[arg2env]
+bench.tikv-cpu-limit-list = cpu-limit-list
+bench.sysbench.load.threads = load-threads
+bench.sysbench.threads = threads
+bench.sysbench.tables = tables
+bench.sysbench.table-size = table-size
+bench.sysbench.duration = run-duration-secs
+deploy.hosts = hosts
+bench.tag.t2.lkvu.sysbench = tags
+deploy.hint.pd-with-tikv = pd-with-tikv
+
+[flow/]
+deploy.conf.t2
+2-step-bench.conf wait-secs-before-backup=600
+sysbench.conf
+2-step-bench.limit-kv-cpu.prepare
+repeat t2.limit-kv-cpu.sysbench.run [[times]]

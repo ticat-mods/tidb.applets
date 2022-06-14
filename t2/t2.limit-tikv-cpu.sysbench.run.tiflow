@@ -1,0 +1,21 @@
+help = run benchmark: test if we could use 7.5c/7.75c for 8c tikv node with sysbench
+abbr = t2.limit-kv-cpu.sb.run
+trivial = 1
+
+[arg]
+tags|tag = ''
+cpu-limit-list|limits|l = 760%,775%,800%
+threads|thread|t = 200
+pd-with-tikv = true
+
+[arg2env]
+bench.tikv-cpu-limit-list = cpu-limit-list
+bench.sysbench.threads = threads
+deploy.hint.pd-with-tikv = pd-with-tikv
+bench.tag.t2.lkvu.sysbench = tags
+
+[flow/]
+** deploy.conf.t2 : sysbench.conf test=oltp_point_select     : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
+** deploy.conf.t2 : sysbench.conf test=oltp_update_index     : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
+** deploy.conf.t2 : sysbench.conf test=oltp_update_non_index : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
+** deploy.conf.t2 : sysbench.conf test=oltp_read_write       : 2-step-bench.limit-tikv-cpu.run [[*bench.tikv-cpu-limit-list*]] **
