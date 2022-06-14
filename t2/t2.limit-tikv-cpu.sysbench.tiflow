@@ -11,7 +11,7 @@ load-threads|load-thread|lt = 32
 threads|thread|t = 200
 tables|table|tb = 250
 table-size|size|ts = 6000000
-duration|dur = 1800
+run-duration-secs|duration|dur = 1800
 pd-with-tikv = true
 
 [arg2env]
@@ -22,8 +22,8 @@ bench.sysbench.tables = tables
 bench.sysbench.table-size = table-size
 bench.sysbench.duration = run-duration-secs
 deploy.hosts = hosts
-bench.tag.t2.lkvu.sysbench = tags
 deploy.hint.pd-with-tikv = pd-with-tikv
+bench.tag.t2.lkvu.sysbench = tags
 
 [flow/]
 deploy.conf.t2
