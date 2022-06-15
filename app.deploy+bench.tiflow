@@ -1,5 +1,7 @@
-help = auto deploy, run benchmark then destroy cluster, usage:\
-	[workload].conf : app.deploy+bench <hosts>'
+[help/]
+auto deploy, run benchmark then destroy cluster, usage:
+[workload].conf : app.deploy+bench <hosts>'
+[/help]
 
 abbr = app.depl+ben
 

@@ -1,5 +1,14 @@
 help = setup TiDB cluster config for auto deployer
 
+### file: deploy.config.8c16g.tidb.tiflow
+###
+help = setup tidb config on 8c16g nodes
+trivial = 9
+[flow/]
+deploy.set.tidb.config mem-quota-query 1073741824
+deploy.set.tidb.config tikv-client.copr-cache.capacity-mb 0.0
+deploy.set.tidb.config performance.txn-total-size-limit 2147483648
+
 ### file: deploy.config.16c32g.tidb.tiflow
 ###
 help = setup tidb config on 8c16g nodes
@@ -20,15 +29,6 @@ deploy.set.tikv.config rocksdb.defaultcf.max-write-buffer-number 10
 deploy.set.tikv.config rocksdb.writecf.max-write-buffer-number 10
 deploy.set.tikv.config rocksdb.lockcf.max-write-buffer-number 10
 deploy.set.tikv.config storage.io-rate-limit.max-bytes-per-sec 301465600
-
-### file: deploy.config.8c16g.tidb.tiflow
-###
-help = setup tidb config on 8c16g nodes
-trivial = 9
-[flow/]
-deploy.set.tidb.config mem-quota-query 1073741824
-deploy.set.tidb.config tikv-client.copr-cache.capacity-mb 0.0
-deploy.set.tidb.config performance.txn-total-size-limit 2147483648
 
 ### file: deploy.config.8c16g.tikv.tiflow
 ###

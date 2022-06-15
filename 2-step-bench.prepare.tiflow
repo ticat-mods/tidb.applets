@@ -1,5 +1,10 @@
-help = prepare for run, usage: \
-	[workload].conf : 2-step-bench.prepare <hosts> : 2-step-bench.run.*
+### file: 2-step-bench.prepare.tiflow
+###
+
+[help/]
+prepare for run, usage:
+[workload].conf : 2-step-bench.prepare <hosts> : 2-step-bench.run.*
+[/help]
 
 abbr = 2step|2sb|2.pp
 trivial = 1
@@ -33,3 +38,66 @@ br.ssh.backup
 db.rm
 meta.db.up
 env.snapshot.save [[2-step-bench.env.snapshot]]
+
+
+### file: 2-step-bench.prepare.regulars.tiflow
+###
+
+help = auto deploy and prepare regular workloads' data for `2-step-bench.run*`
+abbr = 2step.pp.regular|common|rgl
+
+[arg]
+hosts|host|h = ''
+env-snapshot-name|env = 2sb
+
+[arg2env]
+deploy.hosts = hosts
+2-step-bench.env.snapshot = env-snapshot-name
+
+[val2env]
+tidb.backup.use-mv = true
+
+[flow/]
+deploy.auto depose-env=true : db.rm+new
+
+tpcc.conf : tpcc.load : tpcc.tag.data : br.ssh.backup : db.rm+new
+ycsb.conf : ycsb.load : ycsb.tag.data : br.ssh.backup : db.rm+new
+sysbench.conf : sysbench.load : sysbench.tag.data : br.ssh.backup : db.rm
+
+meta.db.up
+env.rm bench.workload
+env.snapshot.save [[2-step-bench.env.snapshot]]
+
+
+### file: 2-step-bench.prepare.regulars.10g.tiflow
+###
+
+help = auto deploy and prepare 10g data for common workloads
+abbr = 2step.pp.regular.10g
+
+[arg]
+hosts|host|h = ''
+
+[arg2env]
+deploy.hosts = hosts
+
+[flow/]
+tpcc.conf wh=60 lt=16
+ycsb.conf count=4000000 lt=16
+sysbench.conf tables=100 table-size=300000 lt=16
+2-step-bench.prepare.regulars
+
+
+### file: 2-step-bench.prepare.tpcc.300wh.tiflow
+###
+
+help = auto deploy and prepare tpcc 300wh data for `2-step-bench.run*`
+abbr = 2step.pp.tpcc.50g
+
+flow = tpcc.conf wh=300 lt=16 : 2-step-bench.prepare
+
+[arg]
+hosts|host|h = ''
+
+[arg2env]
+deploy.hosts = hosts

@@ -1,3 +1,6 @@
+### file: t1.raftstore-cmd-batch.tpcc.tiflow
+###
+
 help = compare async-io performance on t1 deployment
 abbr = t1.rs-cmd-batch.tpcc
 trivial = 1
@@ -36,6 +39,7 @@ tpcc.conf analyze=true
 2-step-bench.run.rs-cmd-batch 1
 2-step-bench.run.rs-cmd-batch 2
 2-step-bench.run.rs-cmd-batch 3
+
 
 ### file: 2-step-bench.run.raftstore-cmd-batch.tiflow
 ###

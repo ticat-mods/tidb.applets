@@ -1,0 +1,50 @@
+help = test if we could use 3.5c/3.75c for 4c tikv
+abbr = t1.limit-kv-cpu|lkvu
+
+[arg]
+hosts|h = ''
+tags|tag = ''
+times = 5
+tpcc-threads|tpcc-thread|tpcc-t = 200
+sysbench-threads|sysbench-thread|sysbench-t|sb-t = 100
+cpu-limit-list|limits = 360%,380%,400%
+
+[arg2env]
+deploy.hosts = hosts
+bench.tag.t1.lkvu = tags
+bench.tpcc.threads-list = threads-list
+bench.tikv-cpu-limit-list = cpu-limit-list
+bench.tpcc.threads = tpcc-threads
+bench.sysbench.threads = sysbench-threads
+
+[flow/]
+t1.limit-kv-cpu.tpcc times=[[times]]
+t1.limit-kv-cpu.sysbench times=[[times]]
+
+
+### file: selftest.t1.limit-tikv-cpu.tiflow
+###
+help = test `t1.limit-tikv-cpu` with minimun data
+abbr = selftest.t1.limit-kv-cpu|limit-kv-cpu|lkvu
+
+tag = selftest
+
+[arg]
+hosts|host|h = 127.0.0.1
+
+[arg2env]
+deploy.hosts = hosts
+
+[val2env]
+br.ssh.backup.wait-secs = 0
+bench.tag.t1.limit-tikv-cpu = selftest
+bench.run.times = 1
+bench.tikv-cpu-limit-list = 200%,400%
+
+[flow/]
+2-step-bench.conf env=selftest-t1-lkvu
+tpcc.conf wh=1 t=1 lt=1 dur=1m
+sysbench.conf tables=1 table-size=1000 t=1 lt=1 dur=60
+t1.limit-tikv-cpu times=1
+env.snapshot.rm selftest-t1-lkvu
+bench.result.last
