@@ -1,3 +1,6 @@
+### file: t1.async-io.tpcc.tiflow
+###
+
 help = compare async-io performance on t1 deployment
 abbr = t1.aio.tpcc
 trivial = 1
@@ -5,54 +8,44 @@ trivial = 1
 [arg]
 hosts|h = ''
 tags|tag = ''
-threads|thread|t = 200
-load-threads|load-thread|l-t|lt = 16
-duration|dur = 30m
-warehouses|warehouse|wh = 1000
-pd-with-tikv = true
-env-snapshot-name|env = 2sb-aio-tpcc
 
 [arg2env]
-bench.tpcc.threads = threads
-bench.tpcc.load.threads = load-threads
-bench.tpcc.duration = duration
-bench.tpcc.warehouses = warehouses
 deploy.hosts = hosts
-bench.tag.t1.lkvu.tpcc = tags
-deploy.hint.pd-with-tikv = pd-with-tikv
-2-step-bench.env.snapshot = env-snapshot-name
+bench.tag.app = tags
 
 [flow/]
-deploy.conf.t1
-tpcc.conf analyze=true
-2-step-bench.prepare
+deploy.hint.pd-with-tikv
+t1.conf.deploy
+t1.conf.tpcc
+2sb.conf env=2sb-aio-tpcc
 
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
+2sb.prepare
+
+2sb.run.aio 0
+2sb.run.aio 1
+2sb.run.aio 0
+2sb.run.aio 1
+2sb.run.aio 0
+2sb.run.aio 1
+2sb.run.aio 0
+2sb.run.aio 1
+2sb.run.aio 0
+2sb.run.aio 1
+
 
 ### file: 2-step-bench.run.async-io.tiflow
 ###
-help = compare the performance between w/wo tikv cpu limitation
-abbr = 2step.run.aio
+
+help = compare the performance with different async-io config
+abbr = 2sb.run.aio
 trivial = 1
 
 [arg]
 store-io-pool-size = 0
-env-snapshot-name|env = 2sb-aio
-
-[arg2env]
-2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
-bench.set-tag bench-aio,aio-pool-size-[[store-io-pool-size]]
 deploy.set.tikv.conf raftstore.store-io-pool-size [[store-io-pool-size]]
 deploy.auto depose-env=true
+
+bench.set-tag bench-aio,aio-pool-size-[[store-io-pool-size]]
 2-step-bench.run

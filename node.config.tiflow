@@ -3,6 +3,7 @@ help = setup TiDB cluster config for auto deployer
 ### file: deploy.config.8c16g.tidb.tiflow
 ###
 help = setup tidb config on 8c16g nodes
+abbr = depl.conf.8c16g.tidb
 trivial = 9
 [flow/]
 deploy.set.tidb.config mem-quota-query 1073741824

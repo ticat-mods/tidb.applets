@@ -1,2 +1,57 @@
+### file: t2.tiflow
+###
 help = applets or jobs for topology: client(8c)*1 + tidb(16c)*1 + tikv(8c)*3
 abbr = t2-c8c+db16c+kv8cx3
+
+### file: t2.config.deploy.tiflow
+###
+help = setup cluster config for t2 topology
+abbr = t2.conf.depl
+trivial = 6
+flow = deploy.conf.8c16g.tikv : deploy.conf.16c32g.tidb
+
+
+### file: t2.config.tpcc.tiflow
+###
+help = config tpcc on t2 deployment
+abbr = t2.conf.tpcc
+
+[arg]
+threads|thread|t = 300
+load-threads|load-thread|l-t|lt = 32
+duration|dur = 30m
+warehouses|warehouse|wh = 2500
+analyze = true
+
+[arg2env]
+bench.tpcc.threads = threads
+bench.tpcc.load.threads = load-threads
+bench.tpcc.duration = duration
+bench.tpcc.warehouses = warehouses
+bench.tpcc.load.analyze = analyze
+
+[val2env]
+bench.workload = tpcc
+
+
+### file: t2.config.sysbench.tiflow
+###
+help = config sysbench on t2 deployment
+abbr = t2.conf.sysben|sb
+
+[arg]
+load-threads|load-thread|lt = 32
+threads|thread|t = 200
+tables|table|tb = 250
+table-size|size|ts = 6000000
+run-duration-secs|duration|dur = 1800
+
+[env2arg]
+bench.sysbench.load.threads = load-threads
+bench.sysbench.threads = threads
+bench.sysbench.tables = tables
+bench.sysbench.table-size = table-size
+bench.sysbench.duration = run-duration-secs
+
+[val2env]
+bench.workload = sysbench

@@ -1,3 +1,5 @@
+### file: t1.limit-tikv-cpu.sysbench.tiflow
+###
 help = test if we could use 3.5c/3.75c for 4c tikv node with SysBench
 abbr = t1.limit-kv-cpu.sb
 trivial = 1
@@ -5,65 +7,34 @@ trivial = 1
 [arg]
 hosts|h = ''
 tags|tag = ''
-times = 5
 cpu-limit-list|limits|l = 360%,380%,400%
-load-threads|load-thread|lt = 16
-threads|thread|t = 200
-tables|table|tb = 100
-table-size|size|ts = 6000000
-run-duration-secs|duration|dur = 1800
-pd-with-tikv = true
-env-snapshot-name|env = 2sb-lkvu-sb
+times = 5
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
-bench.sysbench.load.threads = load-threads
-bench.sysbench.threads = threads
-bench.sysbench.tables = tables
-bench.sysbench.table-size = table-size
-bench.sysbench.duration = run-duration-secs
 deploy.hosts = hosts
-deploy.hint.pd-with-tikv = pd-with-tikv
-bench.tag.t1.lkvu.sysbench = tags
-2-step-bench.env.snapshot = env-snapshot-name
+bench.tag.app = tags
 
 [flow/]
-deploy.conf.t1
-2-step-bench.conf wait-secs-before-backup=600
-sysbench.conf
-2-step-bench.prepare
+deploy.hint.pd-with-tikv
+t1.conf.deploy
+t1.conf.sysben
+2sb.conf wait-secs-before-backup=600 env=2sb-lkvu-sb
+2sb.prepare
 repeat t1.limit-kv-cpu.sysbench.run [[times]]
 
 
 ### file: t1.limit-tikv-cpu.sysbench.run.tiflow
 ###
-
 help = run benchmark: test if we could use 3.5c/3.75c for 4c tikv node with sysbench
-abbr = t1.limit-kv-cpu.sb.run
+abbr = t1.limit-kv-cpu.sysben|sb.run
 trivial = 1
 
-[arg]
-tags|tag = ''
-cpu-limit-list|limits|l = 360%,380%,400%
-threads|thread|t = 200
-tables|table|tb = 100
-table-size|size|ts = 6000000
-run-duration-secs|duration|dur = 1800
-pd-with-tikv = true
-env-snapshot-name|env = 2sb-lkvu-sb
-
-[arg2env]
-bench.tikv-cpu-limit-list = cpu-limit-list
-bench.sysbench.threads = threads
-bench.sysbench.tables = tables
-bench.sysbench.table-size = table-size
-bench.sysbench.duration = run-duration-secs
-deploy.hint.pd-with-tikv = pd-with-tikv
-bench.tag.t1.lkvu.sysbench = tags
-2-step-bench.env.snapshot = env-snapshot-name
+[env]
+bench.tikv-cpu-limit-list = read
 
 [flow/]
-** deploy.conf.t1 : sysbench.conf test=oltp_point_select     : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
-** deploy.conf.t1 : sysbench.conf test=oltp_update_index     : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
-** deploy.conf.t1 : sysbench.conf test=oltp_update_non_index : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
-** deploy.conf.t1 : sysbench.conf test=oltp_read_write       : 2-step-bench.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** t1.conf.deploy : sb.conf test=oltp_point_select     : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** t1.conf.deploy : sb.conf test=oltp_update_index     : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** t1.conf.deploy : sb.conf test=oltp_update_non_index : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** t1.conf.deploy : sb.conf test=oltp_read_write       : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **

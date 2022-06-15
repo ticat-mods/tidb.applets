@@ -1,5 +1,0 @@
-help = setup cluster config for t2 topology
-abbr = deploy.conf.t2
-trivial = 6
-
-flow = deploy.conf.8c16g.tikv : deploy.conf.16c32g.tidb
