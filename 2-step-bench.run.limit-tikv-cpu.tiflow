@@ -10,7 +10,7 @@ env-snapshot-name|env = 2sb-lkvu
 2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
-bench.set-tag tikv-cpu-[[cpu-limit]]
+bench.set-tag bench-limit-kv-cpu,tikv-cpu-[[cpu-limit]]
 deploy.set.tikv.res cpu_quota [[cpu-limit]]
 deploy.auto depose-env=true
 2-step-bench.run
