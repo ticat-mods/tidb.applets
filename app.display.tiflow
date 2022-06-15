@@ -1,0 +1,21 @@
+help = adjusting display and persist
+
+### file: app.display.utf8.off.tiflow
+help = not use utf8 display by default
+abbr = app.disp.utf.disable
+flow = display.utf8.off : env.save : echo "[\\:)] not use utf8 display"
+
+### file: app.display.utf8.symbol.off.tiflow
+help = not use utf8 symbol display by default
+abbr = app.disp.utf.sym.off
+flow = display.utf8.sym.off : env.save : echo "[\\:)] not use utf8 symbol display"
+
+### file: app.display.utf8.symbol.tiflow
+help = use utf8 symbol display by default
+abbr = app.disp.utf.symbols|symbals|symbal|sym
+flow = display.utf8.sym : env.save : echo "[\\:)] use utf8 symbol display"
+
+### file: app.display.utf8.tiflow
+help = use utf8 display by default
+abbr = app.disp.utf
+flow = display.utf8 : env.save : echo "[\\:)] use utf8 display"

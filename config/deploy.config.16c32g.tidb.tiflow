@@ -1,6 +1,0 @@
-help = setup tidb config on 8c16g nodes
-trivial = 9
-
-[flow/]
-deploy.set.tidb.config mem-quota-query 2147483648
-deploy.set.tidb.config performance.txn-total-size-limit 4294967296

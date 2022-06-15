@@ -37,3 +37,22 @@ tpcc.conf analyze=true
 2-step-bench.run.aio 1
 2-step-bench.run.aio 0
 2-step-bench.run.aio 1
+
+### file: 2-step-bench.run.async-io.tiflow
+###
+help = compare the performance between w/wo tikv cpu limitation
+abbr = 2step.run.aio
+trivial = 1
+
+[arg]
+store-io-pool-size = 0
+env-snapshot-name|env = 2sb-aio
+
+[arg2env]
+2-step-bench.env.snapshot = env-snapshot-name
+
+[flow/]
+bench.set-tag bench-aio,aio-pool-size-[[store-io-pool-size]]
+deploy.set.tikv.conf raftstore.store-io-pool-size [[store-io-pool-size]]
+deploy.auto depose-env=true
+2-step-bench.run

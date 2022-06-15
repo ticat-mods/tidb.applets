@@ -1,4 +1,0 @@
-help = use utf8 display by default
-abbr = app.disp.utf
-
-flow = display.utf8 : env.save : echo "[\\:)] use utf8 display"
