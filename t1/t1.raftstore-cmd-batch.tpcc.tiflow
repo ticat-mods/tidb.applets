@@ -1,5 +1,5 @@
 help = compare async-io performance on t1 deployment
-abbr = t1.aio.tpcc
+abbr = t1.rs-cmd-batch.tpcc
 trivial = 1
 
 [arg]
@@ -10,7 +10,7 @@ load-threads|load-thread|l-t|lt = 16
 duration|dur = 30m
 warehouses|warehouse|wh = 1000
 pd-with-tikv = true
-env-snapshot-name|env = 2sb-aio-tpcc
+env-snapshot-name|env = 2sb-rs-cmd-batch-tpcc
 
 [arg2env]
 bench.tpcc.threads = threads
@@ -27,13 +27,12 @@ deploy.conf.t1
 tpcc.conf analyze=true
 2-step-bench.prepare
 
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
-2-step-bench.run.aio 0
-2-step-bench.run.aio 1
+2-step-bench.run.rs-cmd-batch 1
+2-step-bench.run.rs-cmd-batch 2
+2-step-bench.run.rs-cmd-batch 3
+2-step-bench.run.rs-cmd-batch 1
+2-step-bench.run.rs-cmd-batch 2
+2-step-bench.run.rs-cmd-batch 3
+2-step-bench.run.rs-cmd-batch 1
+2-step-bench.run.rs-cmd-batch 2
+2-step-bench.run.rs-cmd-batch 3

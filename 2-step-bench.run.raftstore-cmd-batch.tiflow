@@ -1,0 +1,16 @@
+help = compare the performance between w/wo tikv cpu limitation
+abbr = 2step.run.rs-cmd-batch
+trivial = 1
+
+[arg]
+cmd-batch-concurrent-ready-max-count|batch = 1
+env-snapshot-name|env = 2sb-aio
+
+[arg2env]
+2-step-bench.env.snapshot = env-snapshot-name
+
+[flow/]
+bench.set-tag bench-rs-cmd-batch,cmd-batch-[[cmd-batch-concurrent-ready-max-count]]
+deploy.set.tikv.conf raftstore.cmd-batch-concurrent-ready-max-count [[cmd-batch-concurrent-ready-max-count]]
+deploy.auto depose-env=true
+2-step-bench.run
