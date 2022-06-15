@@ -17,9 +17,8 @@ bench.tag.app = tags
 deploy.hint.pd-with-tikv
 t1.conf.deploy
 t1.conf.tpcc
-2sb.conf env=2sb-rs-cmd-batch-tpcc
 
-2sb.prepare
+2sb.prepare env=2sb-rs-cmd-batch-tpcc
 
 2sb.run.rs-cmd-batch 1
 2sb.run.rs-cmd-batch 2
