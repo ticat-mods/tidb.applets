@@ -1,0 +1,24 @@
+### file: t2.baseline.sysbench.tiflow
+help = SysBench baseline on t2 deployment
+abbr = t2.base.sysben|sb
+
+[arg]
+hosts|h = ''
+times = 5
+threads-list|threads|t = 50,100,200,400,600,800
+
+[arg2env]
+deploy.hosts = hosts
+bench.threads-list = threads-list
+
+[flow/]
+t2.conf.deploy : t2.conf.sysbench
+2sb.prepare env=t2-baseline-sb
+repeat 2sb.run.baseline.sysbench [[times]]
+
+### file: 2-step-bench.run.baseline.sysbench.tiflow
+[flow/]
+** sb.conf t=[[*bench.threads-list*]] test=oltp_point_select     : 2sb.run **
+** sb.conf t=[[*bench.threads-list*]] test=oltp_update_index     : 2sb.run **
+** sb.conf t=[[*bench.threads-list*]] test=oltp_update_non_index : 2sb.run **
+** sb.conf t=[[*bench.threads-list*]] test=oltp_read_write       : 2sb.run **
