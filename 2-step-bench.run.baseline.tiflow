@@ -16,7 +16,7 @@ abbr = 2sb.run.base.sysben|sb
 	bench.tag.type = baseline
 [flow/]
 	## don't need to reset data for `oltp_point_select`
-	db.rm+new : sb.conf test=oltp_point_select : ** sb.run t=[[*bench.threads-list*]] **
+	db.rm+new : sb.conf test=oltp_point_select : ** sb.run t=[[*bench.threads-list*]] : bench.record **
 
 	sb.conf test=oltp_update_index     : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
 	sb.conf test=oltp_update_non_index : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
