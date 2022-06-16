@@ -1,5 +1,6 @@
 ### file: t2.baseline.tpcc.tiflow
 help = tpcc baseline on t2 deployment
+abbr = t2.base.tpcc
 
 [arg]
 hosts|h = ''
@@ -12,8 +13,8 @@ bench.threads-list = threads-list
 
 [flow/]
 t2.conf.deploy : t2.conf.tpcc
-2sb.prepare env=t2-tpcc-baseline
+2sb.prepare env=t2-baseline-tpcc
 repeat 2sb.run.baseline.tpcc [[times]]
 
 ### file: 2-step-bench.run.baseline.tpcc.tiflow
-flow = ** tpcc.conf t=[[*bench.threads-list*]] : deploy.auto depose-env=true : bench.set-tag t2,baseline : 2-step-bench.run **
+flow = ** tpcc.conf t=[[*bench.threads-list*]] : bench.set-tag t2-baseline-tpcc : 2-step-bench.run **
