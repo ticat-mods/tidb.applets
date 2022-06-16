@@ -1,0 +1,11 @@
+### file: t1a.tiflow
+###
+help = applets or jobs for topology: client(4c)*1 + tidb&pd(8c)*1 + tikv(4c)*3
+abbr = t1a-c4c+db8c+kv4cx3
+
+### file: t1a.config.deploy.tiflow
+###
+help = setup cluster config for t1a topology
+abbr = t1a.conf.depl
+trivial = 6
+flow = deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb

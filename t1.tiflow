@@ -1,6 +1,6 @@
 ### file: t1.tiflow
 ###
-help = applets or jobs for topology: client(4c)*1 + tidb(8c)*1 + tikv(4c)*3
+help = applets or jobs for topology: client(4c)*1 + tidb(8c)*1 + tikv&pd(4c)*3
 abbr = t1-c4c+db8c+kv4cx3
 
 ### file: t1.config.deploy.tiflow
