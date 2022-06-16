@@ -16,16 +16,9 @@ bench.tag.app = tags
 bench.tikv-cpu-limit-list = cpu-limit-list
 
 [flow/]
-t1.limit-kv-cpu.tpcc.conf
+t1.conf.deploy : t1.conf.tpcc
 2sb.prepare
 repeat t1.limit-kv-cpu.tpcc.run [[times]]
-
-### file: t1.limit-tikv-cpu.tpcc.config.tiflow
-###
-help = config limit-tikv-cpu tpcc bench
-abbr = t1.lkvu.tpcc.conf
-trivial = 1
-flow = t1.conf.deploy : deploy.hint.pd-with-tikv : t1.conf.tpcc
 
 ### file: t1.limit-tikv-cpu.tpcc.run.tiflow
 ###
@@ -33,7 +26,7 @@ help = run benchmark: test if we could use 3.5c/3.75c for 4c tikv node with tpcc
 abbr = t1.limit-kv-cpu.tpcc.run
 trivial = 1
 
-flow = ** t1.limit-kv-cpu.tpcc.conf : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+flow = ** t1.conf.deploy : t1.conf.tpcc : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
 
 [env]
 bench.tikv-cpu-limit-list = read

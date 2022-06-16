@@ -4,11 +4,9 @@ help = compare async-io performance on t1 deployment
 abbr = t1.aio.tpcc
 trivial = 1
 
-[[conf]] = deploy.hint.pd-with-tikv : t1.conf.deploy : t1.conf.tpcc
-
 [[run]] = 2sb.run.aio 0 : 2sb.run.aio 1
 
-flow = [[conf]] : 2sb.prepare env=2sb-aio-tpcc : [[run]] : [[run]] : [[run]] : [[run]] : [[run]]
+flow = t1.conf.deploy : t1.conf.tpcc : 2sb.prepare env=2sb-aio-tpcc : [[run]] : [[run]] : [[run]] : [[run]] : [[run]]
 
 [arg]
 hosts|h = ''

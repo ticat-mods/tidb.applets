@@ -16,9 +16,7 @@ deploy.hosts = hosts
 bench.tag.t2.lkvu.sysbench = tags
 
 [flow/]
-deploy.hint.pd-with-tikv
-t2.conf.deploy
-t2.conf.sysben
+t2.conf.deploy : t2.conf.sysben
 2sb.prepare wait-secs-before-backup=600 env=2sb-lkvu-sb
 repeat t2.limit-kv-cpu.sysbench.run [[times]]
 

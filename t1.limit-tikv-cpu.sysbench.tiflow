@@ -1,5 +1,4 @@
 ### file: t1.limit-tikv-cpu.sysbench.tiflow
-###
 help = test if we could use 3.5c/3.75c for 4c tikv node with SysBench
 abbr = t1.limit-kv-cpu.sb
 trivial = 1
@@ -16,15 +15,12 @@ deploy.hosts = hosts
 bench.tag.app = tags
 
 [flow/]
-deploy.hint.pd-with-tikv
-t1.conf.deploy
-t1.conf.sysben
+t1.conf.deploy : t1.conf.sysben
 2sb.prepare wait-secs-before-backup=600 env=2sb-lkvu-sb
 repeat t1.limit-kv-cpu.sysbench.run [[times]]
 
 
 ### file: t1.limit-tikv-cpu.sysbench.run.tiflow
-###
 help = run benchmark: test if we could use 3.5c/3.75c for 4c tikv node with sysbench
 abbr = t1.limit-kv-cpu.sysben|sb.run
 trivial = 1

@@ -8,7 +8,7 @@ abbr = t1-c4c+db8c+kv4cx3
 help = setup cluster config for t1 topology
 abbr = t1.conf.depl
 trivial = 6
-flow = deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
+flow = deploy.hint.pd-with-tikv : deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
 
 
 ### file: t1.config.tpcc.tiflow
