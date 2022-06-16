@@ -1,0 +1,23 @@
+### file: 2-step-bench.run.baseline.tpcc.tiflow
+help = run tpcc with threads-list
+abbr = 2sb.run.base.tpcc
+flow = ** tpcc.conf t=[[*bench.threads-list*]] : 2-step-bench.run **
+[env]
+	bench.threads-list = read
+[val2env]
+	bench.tag.type = baseline
+
+### file: 2-step-bench.run.baseline.sysbench.tiflow
+help = run tpcc with threads-list
+abbr = 2sb.run.base.sysben|sb
+[env]
+	bench.threads-list = read
+[val2env]
+	bench.tag.type = baseline
+[flow/]
+	## don't need to reset data for `oltp_point_select`
+	db.rm+new : sb.conf test=oltp_point_select : ** sb.run t=[[*bench.threads-list*]] **
+
+	sb.conf test=oltp_update_index     : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
+	sb.conf test=oltp_update_non_index : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
+	sb.conf test=oltp_read_write       : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **

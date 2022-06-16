@@ -1,14 +1,14 @@
-### file: t2.baseline.sysbench.tiflow
-help = SysBench baseline on t2 deployment
-abbr = t2.base.sysben|sb
+### file: t1.baseline.sysbench.tiflow
+help = SysBench baseline on t1 deployment
+abbr = t1.base.sysben|sb
 
-flow = t2.conf.deploy : t2.conf.sysben : 2sb.prepare env=t2-baseline-sb : repeat 2sb.run.base.sysben [[times]]
+flow = t1.conf.deploy : t1.conf.sysben : 2sb.prepare env=t1-baseline-sb : repeat 2sb.run.base.sysben [[times]]
 
 [arg]
 hosts|h = ''
 times = 5
 threads-list|threads|t = 50,100,200,400,600,800
-tags|tag = t2
+tags|tag = t1
 
 [arg2env]
 bench.threads-list = threads-list
