@@ -11,7 +11,7 @@ cpu-limit-list|limits = 760%,775%,800%
 
 [arg2env]
 deploy.hosts = hosts
-bench.tag.t2.lkvu = tags
+bench.tag.by-user = tags
 bench.tpcc.threads-list = threads-list
 bench.tikv-cpu-limit-list = cpu-limit-list
 bench.tpcc.threads = tpcc-threads

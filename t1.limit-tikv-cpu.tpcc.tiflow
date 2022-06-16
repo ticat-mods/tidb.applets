@@ -7,13 +7,15 @@ trivial = 1
 [arg]
 hosts|h = ''
 tags|tag = ''
-times = 5
 cpu-limit-list|limits|l = 360%,380%,400%
+times = 5
+env-snapshot-name|env = 2sb-lkvu-sb
 
 [arg2env]
-deploy.hosts = hosts
-bench.tag.app = tags
 bench.tikv-cpu-limit-list = cpu-limit-list
+deploy.hosts = hosts
+bench.tag.by-user = tags
+2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
 t1.conf.deploy : t1.conf.tpcc

@@ -14,7 +14,7 @@ tags|tag = ''
 
 [arg2env]
 deploy.hosts = hosts
-bench.tag.app = tags
+bench.tag.by-user = tags
 
 
 ### file: 2-step-bench.run.async-io.tiflow

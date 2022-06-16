@@ -9,15 +9,17 @@ hosts|h = ''
 tags|tag = ''
 cpu-limit-list|limits|l = 760%,775%,800%
 times = 5
+env-snapshot-name|env = 2sb-lkvu-sb
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
 deploy.hosts = hosts
-bench.tag.t2.lkvu.sysbench = tags
+bench.tag.by-user = tags
+2-step-bench.env.snapshot = env-snapshot-name
 
 [flow/]
 t2.conf.deploy : t2.conf.sysben
-2sb.prepare wait-secs-before-backup=600 env=2sb-lkvu-sb
+2sb.prepare wait-secs-before-backup=600
 repeat t2.limit-kv-cpu.sysbench.run [[times]]
 
 

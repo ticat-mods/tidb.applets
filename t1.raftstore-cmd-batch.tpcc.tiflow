@@ -11,7 +11,7 @@ tags|tag = ''
 
 [arg2env]
 deploy.hosts = hosts
-bench.tag.app = tags
+bench.tag.by-user = tags
 
 [flow/]
 t1.conf.deploy : t1.conf.tpcc

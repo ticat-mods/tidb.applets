@@ -11,7 +11,7 @@ cpu-limit-list|limits = 360%,380%,400%
 
 [arg2env]
 deploy.hosts = hosts
-bench.tag.t1.lkvu = tags
+bench.tag.by-user = tags
 bench.tpcc.threads-list = threads-list
 bench.tikv-cpu-limit-list = cpu-limit-list
 bench.tpcc.threads = tpcc-threads
@@ -37,7 +37,7 @@ deploy.hosts = hosts
 
 [val2env]
 br.ssh.backup.wait-secs = 0
-bench.tag.t1.limit-tikv-cpu = selftest
+bench.tag.by-user = selftest
 bench.run.times = 1
 bench.tikv-cpu-limit-list = 200%,400%
 
