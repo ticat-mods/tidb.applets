@@ -7,7 +7,7 @@ flow = t1.conf.deploy : t1.conf.sysben : 2sb.prepare env=t1-baseline-sb : repeat
 [arg]
 hosts|h = ''
 times = 5
-threads-list|threads|t = 50,100,200,400,600,800
+threads-list|threads|t = 50,100,150,200,400,600
 tags|tag = t1
 
 [arg2env]
