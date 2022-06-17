@@ -25,7 +25,7 @@ repeat t2.limit-kv-cpu.sysbench.run [[times]]
 
 ### file: t2.limit-tikv-cpu.sysbench.run.tiflow
 ###
-help = run benchmark: test if we could use 7.5c/7.75c for 8c tikv node with sysbench
+help = run benchmark: test if we could use 7.5c/7.75c for 8c tikv node with SysBench
 abbr = t2.limit-kv-cpu.sysben|sb.run
 trivial = 1
 

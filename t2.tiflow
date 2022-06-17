@@ -36,7 +36,7 @@ bench.workload = tpcc
 
 ### file: t2.config.sysbench.tiflow
 ###
-help = config sysbench on t2 deployment
+help = config SysBench on t2 deployment
 abbr = t2.conf.sysben|sb
 
 [arg]
