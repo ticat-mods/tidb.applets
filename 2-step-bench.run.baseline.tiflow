@@ -15,10 +15,11 @@ abbr = 2sb.run.base.sysben|sb
 [val2env]
 	bench.tag.type = baseline
 [flow/]
-	## don't need to reset data for `oltp_point_select`
-	db.rm+new : sb.conf test=oltp_point_select : ** sb.run t=[[*bench.threads-list*]] : bench.record **
-
 	sb.conf test=oltp_insert           : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
 	sb.conf test=oltp_update_index     : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
 	sb.conf test=oltp_update_non_index : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
 	sb.conf test=oltp_read_write       : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
+
+	## don't need to reset data for `oltp_point_select` every time
+	tidb.rm : tidb.deploy : sb.tag.data : br.ssh.restore : tidb.up
+	sb.conf test=oltp_point_select : ** sb.run t=[[*bench.threads-list*]] : bench.record : sleep 30 **
