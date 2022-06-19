@@ -31,3 +31,12 @@ abbr = 2sb.run.base.sysben|sb
 	## don't need to reset data for `oltp_point_select` every time
 	tidb.rm : tidb.deploy : sb.tag.data : br.ssh.restore : tidb.up
 	sb.conf test=oltp_point_select : ** sb.run t=[[*bench.threads-list*]] : bench.record : sleep 30 **
+
+### file: 2-step-bench.run.baseline.tpch.tiflow
+help = run tpch with threads-list
+abbr = 2sb.run.base.tpch
+flow = ** tpch.conf t=[[*bench.threads-list*]] : 2-step-bench.run **
+[env]
+	bench.threads-list = read
+[val2env]
+	bench.tag.type = baseline
