@@ -1,0 +1,18 @@
+### file: t2a.baseline.tpch.tiflow
+help = tpch baseline on t2a deployment
+abbr = t2a.base.tpch
+
+flow = t2a.conf.deploy : t2.conf.tpch : 2sb.prepare env=t2a-baseline-tpch : repeat 2sb.run.baseline.tpch [[times]]
+
+[arg]
+hosts|h = ''
+times = 5
+threads-list|threads|t = 8,16,32,64,128
+tags|tag = t2a
+
+[arg2env]
+bench.threads-list = threads-list
+# could instead by `deploy.aut.conf <hosts>`
+deploy.hosts = hosts
+# all keys of `bench.tag.*` will be recorded
+bench.tag.by-user = tags
