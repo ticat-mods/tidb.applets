@@ -17,7 +17,7 @@ help = config tpcc on t1 deployment
 abbr = t1.conf.tpcc
 
 [arg]
-threads|thread|t = 200
+threads|thread|t|tpcc-threads = 200
 load-threads|load-thread|l-t|lt = 16
 duration|dur = 30m
 warehouses|warehouse|wh = 1000
@@ -41,7 +41,7 @@ abbr = t1.conf.sysben|sb
 
 [arg]
 load-threads|load-thread|lt = 16
-threads|thread|t = 200
+threads|thread|t|sysbench-threads|sb-threads = 200
 tables|table|tb = 100
 table-size|size|ts = 6000000
 run-duration-secs|duration|dur = 1800
@@ -63,7 +63,7 @@ help = config tpch on t1 deployment
 
 [arg]
 load-threads|load-thread|l-t|lt = 32
-threads|thread|t = 1
+threads|thread|t|tpch-threads = 1
 scale-factor|scale|sf = 80
 queries|query|q|Q = q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22
 duration|dur = 30m
