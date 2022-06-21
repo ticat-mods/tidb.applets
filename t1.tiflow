@@ -21,7 +21,7 @@ threads|thread|t = 200
 load-threads|load-thread|l-t|lt = 16
 duration|dur = 30m
 warehouses|warehouse|wh = 1000
-analyze = true
+analyze = false
 
 [arg2env]
 bench.tpcc.threads = threads
