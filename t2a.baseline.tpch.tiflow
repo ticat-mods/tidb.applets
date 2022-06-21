@@ -7,7 +7,7 @@ flow = t2a.conf.deploy : t2.conf.tpch : 2sb.prepare env=t2a-baseline-tpch : repe
 [arg]
 hosts|h = ''
 times = 5
-threads-list|threads|t = 8,16,32,64,128
+threads-list|threads|t = 1,2,4,8,16
 tags|tag = t2a
 
 [arg2env]

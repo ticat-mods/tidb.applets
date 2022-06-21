@@ -63,7 +63,7 @@ help = config tpch on t2 deployment
 
 [arg]
 load-threads|load-thread|l-t|lt = 64
-threads|thread|t = 32
+threads|thread|t = 1
 scale-factor|scale|sf = 200
 queries|query|q|Q = q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22
 duration|dur = 30m
