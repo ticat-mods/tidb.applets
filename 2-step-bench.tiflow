@@ -1,5 +1,5 @@
 help = 2 step bench: prepare => run
-abbr = 2-step-bench|2step|2sb|2
+abbr = 2-step-bench|2step|2sb
 
 
 ### file: 2-step-bench.config.tiflow
@@ -10,19 +10,19 @@ abbr = 2-step-bench.conf
 tag = config
 
 [arg]
-env-snapshot-name|env = 2sb
-wait-secs-before-backup|w = 0
+2sb-env-snapshot-name|env-ss|env = 2sb
+br-backup-wait-secs|br-backup-wait|wait-secs|wait = 2
 
 [arg2env]
-2-step-bench.env.snapshot = env-snapshot-name
-br.ssh.backup.wait-secs = wait-secs-before-backup
+2-step-bench.env.snapshot = 2sb-env-snapshot-name
+br.ssh.backup.wait-secs = br-backup-wait-secs
 
 
 ### file: selftest.2-step-bench.tiflow
 ###
 
 help = test the `2-step-bench.*` benchmark toolbox
-abbr = selftest.2step|2sb|2
+abbr = selftest.2step|2sb
 tag = selftest
 
 [flow/]

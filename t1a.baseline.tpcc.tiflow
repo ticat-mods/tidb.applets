@@ -4,15 +4,7 @@ abbr = t1a.base.tpcc
 
 flow = t1a.conf.deploy : t1.conf.tpcc : 2sb.prepare env=t1a-baseline-tpcc : repeat 2sb.run.baseline.tpcc [[times]]
 
-[arg]
-hosts|h = ''
-times = 5
-threads-list|threads|t = 50,100,150,200,400,600
-tags|tag = t1a
+args.auto = hosts,threads-list,tags
 
-[arg2env]
-bench.threads-list = threads-list
-# could instead by `deploy.aut.conf <hosts>`
-deploy.hosts = hosts
-# all keys of `bench.tag.*` will be recorded
-bench.tag.by-user = tags
+[arg]
+times = 5

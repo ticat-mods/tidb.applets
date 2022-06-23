@@ -6,20 +6,24 @@ prepare for run, usage:
 [workload].conf : 2-step-bench.prepare <hosts> : 2-step-bench.run.*
 [/help]
 
-abbr = 2step|2sb|2.pp
+abbr = 2step|2sb.pp
 trivial = 1
 
 [arg]
-hosts|host|h = ''
-wait-secs-before-backup|w = 0
+deploy-hosts|hosts|host = ''
+br-backup-wait-secs|br-backup-wait|wait-secs|wait = 2
 workload|wl = ''
-env-snapshot-name|env = 2sb
+2sb-env-snapshot-name|env-ss|env = 2sb
+user-tags|tags|tag = t2
 
 [arg2env]
-deploy.hosts = hosts
-br.ssh.backup.wait-secs = wait-secs-before-backup
+deploy.hosts = deploy-hosts
+br.ssh.backup.wait-secs = br-backup-wait-secs
 bench.workload = workload
-2-step-bench.env.snapshot = env-snapshot-name
+2-step-bench.env.snapshot = 2sb-env-snapshot-name
+
+# all keys of `bench.tag.*` will be recorded
+bench.tag.by-user = user-tags
 
 [val2env]
 tidb.backup.use-mv = true
@@ -47,12 +51,12 @@ help = auto deploy and prepare regular workloads' data for `2-step-bench.run*`
 abbr = 2step.pp.regular|common|rgl
 
 [arg]
-hosts|host|h = ''
-env-snapshot-name|env = 2sb
+deploy-hosts|hosts|host = ''
+2sb-env-snapshot-name|env-ss|env = 2sb
 
 [arg2env]
-deploy.hosts = hosts
-2-step-bench.env.snapshot = env-snapshot-name
+deploy.hosts = deploy-hosts
+2-step-bench.env.snapshot = 2sb-env-snapshot-name
 
 [val2env]
 tidb.backup.use-mv = true
@@ -75,11 +79,7 @@ env.snapshot.save [[2-step-bench.env.snapshot]]
 help = auto deploy and prepare 10g data for common workloads
 abbr = 2step.pp.regular.10g
 
-[arg]
-hosts|host|h = ''
-
-[arg2env]
-deploy.hosts = hosts
+args.auto = hosts
 
 [flow/]
 tpcc.conf wh=60 lt=16
@@ -94,10 +94,6 @@ sysbench.conf tables=100 table-size=300000 lt=16
 help = auto deploy and prepare tpcc 300wh data for `2-step-bench.run*`
 abbr = 2step.pp.tpcc.50g
 
+args.auto = hosts
+
 flow = tpcc.conf wh=300 lt=16 : 2-step-bench.prepare
-
-[arg]
-hosts|host|h = ''
-
-[arg2env]
-deploy.hosts = hosts

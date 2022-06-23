@@ -1,4 +1,6 @@
 help = start a local TiDB cluster as meta db, persist to env
 abbr = app.meta.db.up
 
+args.auto = **
+
 flow = meta.db.up : env.save

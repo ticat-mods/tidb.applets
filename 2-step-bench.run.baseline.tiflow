@@ -2,18 +2,18 @@
 help = config env for `2-step-bench.run.baseline.*`
 abbr = 2sb.run.base.conf
 [arg]
-	threads-list|threads|t = 50,100,150,200,400,600
+	baseline-threads-list|threads-list|threads|t = 50,100,150,200,400,600
 [arg2env]
-	bench.threads-list = threads-list
+	bench.threads-list = baseline-threads-list
 
 ### file: 2-step-bench.run.baseline.tpcc.tiflow
 help = run tpcc with threads-list
 abbr = 2sb.run.base.tpcc
 flow = ** tpcc.conf t=[[*bench.threads-list*]] : 2-step-bench.run **
 [arg]
-	threads-list|threads|t = 50,100,150,200,400,600
+	baseline-threads-list|threads-list|threads|t = 50,100,150,200,400,600
 [arg2env]
-	bench.threads-list = threads-list
+	bench.threads-list = baseline-threads-list
 [env]
 	bench.threads-list = read
 [val2env]
@@ -23,9 +23,9 @@ flow = ** tpcc.conf t=[[*bench.threads-list*]] : 2-step-bench.run **
 help = run tpcc with threads-list
 abbr = 2sb.run.base.sysben|sb
 [arg]
-	threads-list|threads|t = 50,100,150,200,300
+	baseline-threads-list|threads-list|threads|t = 50,100,150,200,400,600
 [arg2env]
-	bench.threads-list = threads-list
+	bench.threads-list = baseline-threads-list
 [env]
 	bench.threads-list = read
 [val2env]
@@ -45,9 +45,9 @@ help = run tpch with threads-list
 abbr = 2sb.run.base.tpch
 flow = ** tpch.conf t=[[*bench.threads-list*]] : 2-step-bench.run **
 [arg]
-	threads-list|threads|t = 1,2,4,8,16
+	baseline-threads-list|threads-list|threads|t = 1,2,4,8,16
 [arg2env]
-	bench.threads-list = threads-list
+	bench.threads-list = baseline-threads-list
 [env]
 	bench.threads-list = read
 [val2env]

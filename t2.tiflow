@@ -17,18 +17,18 @@ help = config tpcc on t2 deployment
 abbr = t2.conf.tpcc
 
 [arg]
-threads|thread|t = 300
-load-threads|load-thread|l-t|lt = 32
-duration|dur = 30m
-warehouses|warehouse|wh = 2500
-analyze = false
+tpcc-load-threads|tpcc-lt|load-threads|load-thread|l-t|lt = 32
+tpcc-threads|tpcc-t|threads|thread|thd|t = 300
+tpcc-warehouses|tpcc-wh|warehouses|warehouse|wh = 2500
+tpcc-duration|tpcc-dur|duration|dur = 30m
+tpcc-load-analyze|load-analyze|analyze = false
 
 [arg2env]
-bench.tpcc.threads = threads
-bench.tpcc.load.threads = load-threads
-bench.tpcc.duration = duration
-bench.tpcc.warehouses = warehouses
-bench.tpcc.load.analyze = analyze
+bench.tpcc.threads = tpcc-threads
+bench.tpcc.load.threads = tpcc-load-threads
+bench.tpcc.duration = tpcc-duration
+bench.tpcc.warehouses = tpcc-warehouses
+bench.tpcc.load.analyze = tpcc-load-analyze
 
 [val2env]
 bench.workload = tpcc
@@ -40,18 +40,20 @@ help = config SysBench on t2 deployment
 abbr = t2.conf.sysben|sb
 
 [arg]
-load-threads|load-thread|lt = 32
-threads|thread|t = 200
-tables|table|tb = 250
-table-size|size|ts = 6000000
-run-duration-secs|duration|dur = 1800
+sysbench-load-threads|sb-load-thread|load-thread|sb-lt|sblt|lt = 32
+sysbench-load-analyze|sb-analyze|analyze = false
+sysbench-threads|sb-thread|thread|sbt|t = 200
+sysbench-tables|sb-tb|tables|table|tb = 250
+sysbench-table-size|sb-table-size|sb-ts|sbts|ts = 6000000
+sysbench-duration-secs|sb-dur|sb-secs|sb-sec|sbsec|duration|dur|secs|sec = 1800
 
 [arg2env]
-bench.sysbench.load.threads = load-threads
-bench.sysbench.threads = threads
-bench.sysbench.tables = tables
-bench.sysbench.table-size = table-size
-bench.sysbench.duration = run-duration-secs
+bench.sysbench.load.threads = sysbench-load-threads
+bench.sysbench.load.analyze = sysbench-load-analyze
+bench.sysbench.threads = sysbench-threads
+bench.sysbench.tables = sysbench-tables
+bench.sysbench.table-size = sysbench-table-size
+bench.sysbench.duration = sysbench-duration-secs
 
 [val2env]
 bench.workload = sysbench
@@ -62,22 +64,24 @@ bench.workload = sysbench
 help = config tpch on t2 deployment
 
 [arg]
-load-threads|load-thread|l-t|lt = 64
-threads|thread|t = 1
-scale-factor|scale|sf = 200
-queries|query|q|Q = q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22
-duration|dur = 30m
-with-tiflash|tiflash = false
-db-name|database|db = test
+tpch-load-threads|tpch-lt|load-threads|load-thread|l-t|lt = 64
+tpch-threads|tpch-t|threads|thread|t = 1
+tpch-scale-factor|tpch-scale|tpch-sf|scale-factor|scale|sf = 100
+tpch-queries|tpch-q|queries|query|q = q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22
+tpch-duration|tpch-dur|duration|dur = 30m
+tpch-load-with-tiflash|with-tiflash|tiflash = false
+tpch-load-analyze|load-analyze|analyze = false
+tpch-db-name|tpch-db|db-name|db = test
 
 [arg2env]
-bench.tpch.load.threads = load-threads
-bench.tpch.threads = threads
-bench.tpch.scale-factor = scale-factor
-bench.tpch.duration = duration
-bench.tpch.queries = queries
-bench.tpch.tiflash = with-tiflash
-bench.tpch.db = db-name
+bench.tpch.load.threads = tpch-load-threads
+bench.tpch.threads = tpch-threads
+bench.tpch.scale-factor = tpch-scale-factor
+bench.tpch.duration = tpch-duration
+bench.tpch.queries = tpch-queries
+bench.tpch.tiflash = tpch-load-with-tiflash
+bench.tpch.load.analyze = tpch-load-analyze
+bench.tpch.db = tpch-db-name
 
 [val2env]
 bench.workload = tpch

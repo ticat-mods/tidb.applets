@@ -4,10 +4,10 @@ trivial = 1
 
 [arg]
 cpu-limit|limit|l = ''
-env-snapshot-name|env = 2sb-lkvu
+2sb-env-snapshot-name|env-ss|env = 2sb-lkvu
 
 [arg2env]
-2-step-bench.env.snapshot = env-snapshot-name
+2-step-bench.env.snapshot = 2sb-env-snapshot-name
 
 [flow/]
 bench.set-tag bench-limit-kv-cpu,tikv-cpu-[[cpu-limit]]

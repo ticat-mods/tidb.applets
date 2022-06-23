@@ -4,15 +4,7 @@ abbr = t2a.base.sysben|sb
 
 flow = t2a.conf.deploy : t2.conf.sysben : 2sb.prepare env=t2a-baseline-sb : repeat 2sb.run.baseline.sysben [[times]]
 
-[arg]
-hosts|h = ''
-times = 5
-threads-list|threads|t = 50,100,150,200,300
-tags|tag = t2a
+args.auto = hosts,threads-list,tags
 
-[arg2env]
-bench.threads-list = threads-list
-# could instead by `deploy.aut.conf <hosts>`
-deploy.hosts = hosts
-# all keys of `bench.tag.*` will be recorded
-bench.tag.by-user = tags
+[arg]
+times = 5

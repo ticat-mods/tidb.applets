@@ -5,13 +5,13 @@ help = compare different raftstore cmd-batch performance on t1 deployment
 abbr = t1.rs-cmd-batch.tpcc
 trivial = 1
 
+args.auto = hosts
+
 [arg]
-hosts|h = ''
-tags|tag = ''
+user-record-tags|tags|tag = ''
 
 [arg2env]
-deploy.hosts = hosts
-bench.tag.by-user = tags
+bench.tag.by-user = user-record-tags
 
 [flow/]
 t1.conf.deploy : t1.conf.tpcc

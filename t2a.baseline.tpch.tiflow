@@ -4,15 +4,7 @@ abbr = t2a.base.tpch
 
 flow = t2a.conf.deploy : t2.conf.tpch : 2sb.prepare env=t2a-baseline-tpch : repeat 2sb.run.baseline.tpch [[times]]
 
-[arg]
-hosts|h = ''
-times = 5
-threads-list|threads|t = 1,2,4,8,16
-tags|tag = t2a
+args.auto = hosts,threads-list,tags
 
-[arg2env]
-bench.threads-list = threads-list
-# could instead by `deploy.aut.conf <hosts>`
-deploy.hosts = hosts
-# all keys of `bench.tag.*` will be recorded
-bench.tag.by-user = tags
+[arg]
+times = 5

@@ -9,7 +9,7 @@ hosts|h = ''
 tags|tag = ''
 cpu-limit-list|limits|l = 360%,380%,400%
 times = 5
-env-snapshot-name|env = 2sb-lkvu-sb
+env-snapshot-name|env-ss|env = 2sb-lkvu-sb
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list

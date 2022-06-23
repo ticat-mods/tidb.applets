@@ -8,7 +8,7 @@ hosts|h = ''
 tags|tag = ''
 cpu-limit-list|limits|l = 360%,380%,400%
 times = 5
-env-snapshot-name|env = 2sb-lkvu-sb
+env-snapshot-name|env-ss|env = 2sb-lkvu-sb
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
@@ -18,7 +18,7 @@ bench.tag.by-user = tags
 
 [flow/]
 t1.conf.deploy : t1.conf.sysben
-2sb.prepare wait-secs-before-backup=600
+2sb.prepare br-backup-wait=600
 repeat t1.limit-kv-cpu.sysbench.run [[times]]
 
 
