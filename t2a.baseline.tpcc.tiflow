@@ -2,7 +2,7 @@
 help = tpcc baseline on t2a deployment
 abbr = t2a.base.tpcc
 
-flow = t2a.conf.deploy : t2.conf.tpcc : 2sb.prepare env=t2a-baseline-tpcc : repeat 2sb.run.baseline.tpcc [[times]]
+flow = t2a.conf.deploy : t2.conf.tpcc : 2sb.prepare : repeat 2sb.run.baseline.tpcc [[times]]
 
 args.auto = hosts,threads-list,tags
 

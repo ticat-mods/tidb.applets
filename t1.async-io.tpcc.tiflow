@@ -8,7 +8,7 @@ args.auto = hosts
 
 [[run]] = 2sb.run.aio 0 : 2sb.run.aio 1
 
-flow = t1.conf.deploy : t1.conf.tpcc : 2sb.prepare env=2sb-aio-tpcc : [[run]] : [[run]] : [[run]] : [[run]] : [[run]]
+flow = t1.conf.deploy : t1.conf.tpcc : 2sb.prepare : [[run]] : [[run]] : [[run]] : [[run]] : [[run]]
 
 [arg]
 user-record-tags|tags|tag = ''
@@ -28,7 +28,7 @@ store-io-pool-size = 0
 
 [flow/]
 deploy.set.tikv.conf raftstore.store-io-pool-size [[store-io-pool-size]]
-deploy.auto depose-env=true
+deploy.auto
 
 bench.set-tag bench-aio,aio-pool-size-[[store-io-pool-size]]
 2-step-bench.run

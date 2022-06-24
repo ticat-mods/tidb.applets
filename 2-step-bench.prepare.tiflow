@@ -13,7 +13,7 @@ trivial = 1
 deploy-hosts|hosts|host = ''
 br-backup-wait-secs|br-backup-wait|wait-secs|wait = 2
 workload|wl = ''
-2sb-env-snapshot-name|env-ss|env = 2sb
+2sb-env-snapshot-name|env-ss|env = 2sb-latest
 user-tags|tags|tag = t2
 
 [arg2env]
@@ -32,7 +32,7 @@ tidb.backup.use-mv = true
 bench.workload = read
 
 [flow/]
-deploy.auto depose-env=true
+deploy.auto
 db.rm+new
 
 [[bench.workload]].load
@@ -41,7 +41,13 @@ br.ssh.backup
 
 db.rm
 meta.db.up
+
 env.snapshot.save [[2-step-bench.env.snapshot]]
+# 1. if `2sb.run` execute in the same session, the snapshot will not loaded
+#   because value of key `2-step-bench.env.snapshot` is a fake snapshot name.
+# 2. if `2sb.run` execute in another session later, the snapshot will be loaded
+#   because value of key `2-step-bench.env.snapshot` is re-asigned in `2sb.run`
+env.set 2-step-bench.env.snapshot dummy
 
 
 ### file: 2-step-bench.prepare.regulars.tiflow
@@ -52,7 +58,7 @@ abbr = 2step.pp.regular|common|rgl
 
 [arg]
 deploy-hosts|hosts|host = ''
-2sb-env-snapshot-name|env-ss|env = 2sb
+2sb-env-snapshot-name|env-ss|env = 2sb-latest
 
 [arg2env]
 deploy.hosts = deploy-hosts
@@ -62,7 +68,7 @@ deploy.hosts = deploy-hosts
 tidb.backup.use-mv = true
 
 [flow/]
-deploy.auto depose-env=true : db.rm+new
+deploy.auto : db.rm+new
 
 tpcc.conf : tpcc.load : tpcc.tag.data : br.ssh.backup : db.rm+new
 ycsb.conf : ycsb.load : ycsb.tag.data : br.ssh.backup : db.rm+new
@@ -70,7 +76,13 @@ sysbench.conf : sysbench.load : sysbench.tag.data : br.ssh.backup : db.rm
 
 meta.db.up
 env.rm bench.workload
+
 env.snapshot.save [[2-step-bench.env.snapshot]]
+# 1. if `2sb.run` execute in the same session, the snapshot will not loaded
+#   because value of key `2-step-bench.env.snapshot` is a fake snapshot name.
+# 2. if `2sb.run` execute in another session later, the snapshot will be loaded
+#   because value of key `2-step-bench.env.snapshot` is re-asigned in `2sb.run`
+env.set 2-step-bench.env.snapshot dummy
 
 
 ### file: 2-step-bench.prepare.regulars.10g.tiflow

@@ -2,7 +2,7 @@
 help = SysBench baseline on t1a deployment
 abbr = t1a.base.sysben|sb
 
-flow = t1a.conf.deploy : t1.conf.sysben : 2sb.prepare env=t1a-baseline-sb : repeat 2sb.run.baseline.sysben [[times]]
+flow = t1a.conf.deploy : t1.conf.sysben : 2sb.prepare : repeat 2sb.run.baseline.sysben [[times]]
 
 args.auto = hosts,threads-list,tags
 

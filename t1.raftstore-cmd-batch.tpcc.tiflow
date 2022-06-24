@@ -15,8 +15,7 @@ bench.tag.by-user = user-record-tags
 
 [flow/]
 t1.conf.deploy : t1.conf.tpcc
-
-2sb.prepare env=2sb-rs-cmd-batch-tpcc
+2sb.prepare
 
 2sb.run.rs-cmd-batch 1
 2sb.run.rs-cmd-batch 2
@@ -41,7 +40,6 @@ cmd-batch-max|batch = 1
 
 [flow/]
 deploy.set.tikv.conf raftstore.cmd-batch-concurrent-ready-max-count [[cmd-batch-max]]
-deploy.auto depose-env=true
-
+deploy.auto
 bench.set-tag bench-rs-cmd-batch,cmd-batch-[[cmd-batch-max]]
 2-step-bench.run

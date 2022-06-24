@@ -10,7 +10,7 @@ abbr = 2-step-bench.conf
 tag = config
 
 [arg]
-2sb-env-snapshot-name|env-ss|env = 2sb
+2sb-env-snapshot-name|env-ss|env = 2sb-latest
 br-backup-wait-secs|br-backup-wait|wait-secs|wait = 2
 
 [arg2env]
