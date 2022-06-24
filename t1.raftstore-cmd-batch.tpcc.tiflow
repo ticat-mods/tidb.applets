@@ -5,13 +5,7 @@ help = compare different raftstore cmd-batch performance on t1 deployment
 abbr = t1.rs-cmd-batch.tpcc
 trivial = 1
 
-args.auto = hosts
-
-[arg]
-user-record-tags|tags|tag = ''
-
-[arg2env]
-bench.tag.by-user = user-record-tags
+args.auto = hosts,tags
 
 [flow/]
 t1.conf.deploy : t1.conf.tpcc
@@ -42,4 +36,4 @@ cmd-batch-max|batch = 1
 deploy.set.tikv.conf raftstore.cmd-batch-concurrent-ready-max-count [[cmd-batch-max]]
 deploy.auto
 bench.set-tag bench-rs-cmd-batch,cmd-batch-[[cmd-batch-max]]
-2-step-bench.run
+2sb.run

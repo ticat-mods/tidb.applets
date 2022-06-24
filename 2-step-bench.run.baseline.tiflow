@@ -1,36 +1,29 @@
 ### file: 2-step-bench.run.baseline.conf.tiflow
-help = config env for `2-step-bench.run.baseline.*`
+###
+help = config env for `2sb.run.baseline.*`
 abbr = 2sb.run.base.conf
 [arg]
 	baseline-threads-list|threads-list|threads|t = 50,100,150,200,400,600
 [arg2env]
 	bench.threads-list = baseline-threads-list
 
+
 ### file: 2-step-bench.run.baseline.tpcc.tiflow
+###
 help = run tpcc with threads-list
 abbr = 2sb.run.base.tpcc
-flow = ** tpcc.conf t=[[*bench.threads-list*]] : 2-step-bench.run **
-[arg]
-	baseline-threads-list|threads-list|threads|t = 50,100,150,200,400,600
-[arg2env]
-	bench.threads-list = baseline-threads-list
-[env]
-	bench.threads-list = read
-[val2env]
-	bench.tag.type = baseline
+args.auto = tags,threads-list
+flow = bench.add-tag baseline : 2sb.run.base.conf : ** tpcc.conf t=[[*bench.threads-list*]] : 2sb.run **
+
 
 ### file: 2-step-bench.run.baseline.sysbench.tiflow
+###
 help = run tpcc with threads-list
 abbr = 2sb.run.base.sysben|sb
-[arg]
-	baseline-threads-list|threads-list|threads|t = 50,100,150,200,400,600
-[arg2env]
-	bench.threads-list = baseline-threads-list
-[env]
-	bench.threads-list = read
-[val2env]
-	bench.tag.type = baseline
+args.auto = tags,threads-list
 [flow/]
+	bench.add-tag baseline : 2sb.run.base.conf
+
 	sb.conf test=oltp_insert           : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
 	sb.conf test=oltp_update_index     : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
 	sb.conf test=oltp_update_non_index : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
@@ -40,15 +33,10 @@ abbr = 2sb.run.base.sysben|sb
 	tidb.rm : tidb.deploy : sb.tag.data : br.ssh.restore : tidb.up
 	sb.conf test=oltp_point_select : ** sb.run t=[[*bench.threads-list*]] : bench.record : sleep 30 **
 
+
 ### file: 2-step-bench.run.baseline.tpch.tiflow
+###
 help = run tpch with threads-list
 abbr = 2sb.run.base.tpch
-flow = ** tpch.conf t=[[*bench.threads-list*]] : 2-step-bench.run **
-[arg]
-	baseline-threads-list|threads-list|threads|t = 1,2,4,8,16
-[arg2env]
-	bench.threads-list = baseline-threads-list
-[env]
-	bench.threads-list = read
-[val2env]
-	bench.tag.type = baseline
+args.auto = tags,threads-list
+flow = bench.add-tag baseline : 2sb.run.base.conf : ** tpch.conf t=[[*bench.threads-list*]] : 2sb.run **

@@ -1,21 +1,17 @@
+### file: t1.limit-tikv-cpu.tiflow
+###
 help = test if we could use 3.5c/3.75c for 4c tikv
 abbr = t1.limit-kv-cpu|lkvu
-
 args.auto = hosts,tags,cpu-limit-list,tpcc-threads,sysbench-threads
-
+flow = t1.limit-kv-cpu.tpcc times=[[times]] : t1.limit-kv-cpu.sysbench times=[[times]]
 [arg]
-times = 5
-
-[flow/]
-t1.limit-kv-cpu.tpcc times=[[times]]
-t1.limit-kv-cpu.sysbench times=[[times]]
+	times = 5
 
 
 ### file: selftest.t1.limit-tikv-cpu.tiflow
 ###
 help = test `t1.limit-tikv-cpu` with minimun data
 abbr = selftest.t1.limit-kv-cpu|limit-kv-cpu|lkvu
-
 tag = selftest
 
 [arg]
@@ -26,13 +22,63 @@ deploy.hosts = hosts
 
 [val2env]
 br.ssh.backup.wait-secs = 0
-bench.tag.by-user = selftest
 bench.run.times = 1
 bench.tikv-cpu-limit-list = 200%,400%
 
 [flow/]
+bench.add-tag selftest
 tpcc.conf wh=1 t=1 lt=1 dur=1m
 sysbench.conf tables=1 table-size=1000 t=1 lt=1 dur=60
 t1.limit-tikv-cpu times=1
 env.snapshot.rm selftest-t1-lkvu
 bench.result.last
+
+
+### file: t1.limit-tikv-cpu.tpcc.tiflow
+###
+help = test if we could use 3.5c/3.75c for 4c tikv node with tpcc
+abbr = t1.limit-kv-cpu.tpcc
+trivial = 1
+args.auto = hosts,tags,cpu-limit-list
+[arg]
+	times = 5
+[flow/]
+	t1.conf.deploy : t1.conf.tpcc : 2sb.prepare : repeat t1.limit-kv-cpu.tpcc.run [[times]]
+
+
+### file: t1.limit-tikv-cpu.tpcc.run.tiflow
+###
+help = run benchmark: test if we could use 3.5c/3.75c for 4c tikv node with tpcc
+abbr = t1.limit-kv-cpu.tpcc.run
+trivial = 1
+[arg]
+	cpu-limit-list|limits|l = 360%,380%,400%
+[arg2env]
+	bench.tikv-cpu-limit-list = cpu-limit-list
+[flow/]
+	** t1.conf.deploy : t1.conf.tpcc : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+
+
+### file: t1.limit-tikv-cpu.tpcc.tiflow
+###
+help = test if we could use 3.5c/3.75c for 4c tikv node with tpcc
+abbr = t1.limit-kv-cpu.tpcc
+trivial = 1
+args.auto = hosts,tags,cpu-limit-list
+[arg]
+	times = 5
+[flow/]
+	t1.conf.deploy : t1.conf.tpcc : 2sb.prepare : repeat t1.limit-kv-cpu.tpcc.run [[times]]
+
+
+### file: t1.limit-tikv-cpu.tpcc.run.tiflow
+###
+help = run benchmark: test if we could use 3.5c/3.75c for 4c tikv node with tpcc
+abbr = t1.limit-kv-cpu.tpcc.run
+trivial = 1
+[arg]
+	cpu-limit-list|limits|l = 360%,380%,400%
+[arg2env]
+	bench.tikv-cpu-limit-list = cpu-limit-list
+[flow/]
+	** t1.conf.deploy : t1.conf.tpcc : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **

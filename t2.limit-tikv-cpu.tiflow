@@ -1,22 +1,78 @@
+### file: t2.limit-tikv-cpu.tiflow
+###
 help = test if we could use 7.5c/7.75c for 8c tikv
 abbr = t2.limit-kv-cpu|lkvu
+args.auto = hosts,tags,tpcc-threads,sysbench-threads,limits
+flow = t2.limit-kv-cpu.tpcc times=[[times]] : t2.limit-kv-cpu.sysbench times=[[times]]
+[arg]
+	times = 5
+
+
+### file: t2.limit-tikv-cpu.tpcc.tiflow
+###
+help = test if we could use 7.5c/7.75c for 7c tikv node with tpcc
+abbr = t2.limit-kv-cpu.tpcc
+trivial = 1
 
 [arg]
 hosts|h = ''
-tags|tag = ''
+cpu-limit-list|limits|l = 760%,775%,800%
 times = 5
-tpcc-threads|tpcc-thread|tpcc-t = 300
-sysbench-threads|sysbench-thread|sysbench-t|sb-t = 200
-cpu-limit-list|limits = 760%,775%,800%
 
 [arg2env]
-deploy.hosts = hosts
-bench.tag.by-user = tags
-bench.tpcc.threads-list = threads-list
 bench.tikv-cpu-limit-list = cpu-limit-list
-bench.tpcc.threads = tpcc-threads
-bench.sysbench.threads = sysbench-threads
+deploy.hosts = hosts
 
 [flow/]
-t2.limit-kv-cpu.tpcc times=[[times]]
-t2.limit-kv-cpu.sysbench times=[[times]]
+t2.conf.deploy : t2.conf.tpcc
+2sb.prepare
+repeat t2.limit-kv-cpu.tpcc.run [[times]]
+
+
+### file: t2.limit-tikv-cpu.tpcc.run.tiflow
+###
+help = run benchmark: test if we could use 7.5c/7.75c for 8c tikv node with tpcc
+abbr = t2.limit-kv-cpu.tpcc.run
+trivial = 1
+
+flow = ** t2.conf.deploy : t2.conf.tpcc : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+
+[env]
+bench.tikv-cpu-limit-list = read
+
+
+### file: t2.limit-tikv-cpu.sysbench.tiflow
+###
+help = test if we could use 7.5c/7.75c for 8c tikv node with SysBench
+abbr = t2.limit-kv-cpu.sb
+trivial = 1
+
+[arg]
+hosts|h = ''
+cpu-limit-list|limits|l = 760%,775%,800%
+times = 5
+
+[arg2env]
+bench.tikv-cpu-limit-list = cpu-limit-list
+deploy.hosts = hosts
+
+[flow/]
+t2.conf.deploy : t2.conf.sysben
+2sb.prepare wait-secs-before-backup=600
+repeat t2.limit-kv-cpu.sysbench.run [[times]]
+
+
+### file: t2.limit-tikv-cpu.sysbench.run.tiflow
+###
+help = run benchmark: test if we could use 7.5c/7.75c for 8c tikv node with SysBench
+abbr = t2.limit-kv-cpu.sysben|sb.run
+trivial = 1
+
+[env]
+bench.tikv-cpu-limit-list = read
+
+[flow/]
+** t2.conf.deploy : sb.conf test=oltp_point_select     : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** t2.conf.deploy : sb.conf test=oltp_update_index     : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** t2.conf.deploy : sb.conf test=oltp_update_non_index : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
+** t2.conf.deploy : sb.conf test=oltp_read_write       : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **

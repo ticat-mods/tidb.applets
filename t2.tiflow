@@ -7,7 +7,7 @@ abbr = t2-c8c+db16c+kv8cx3
 ###
 help = setup cluster config for t2 topology
 abbr = t2.conf.depl
-trivial = 6
+trivial = 3
 flow = deploy.hint.pd-with-tikv : deploy.conf.8c16g.tikv : deploy.conf.16c32g.tidb
 
 
@@ -85,3 +85,23 @@ bench.tpch.db = tpch-db-name
 
 [val2env]
 bench.workload = tpch
+
+
+### file: t2.baseline.tpcc.tiflow
+###
+help = tpcc baseline on t2 deployment
+abbr = t2.base.tpcc
+args.auto = hosts,threads-list,tags
+flow = t2.conf.deploy : t2.conf.tpcc : 2sb.prepare : repeat 2sb.run.baseline.tpcc [[times]]
+[arg]
+	times = 5
+
+
+### file: t2.baseline.sysbench.tiflow
+###
+help = SysBench baseline on t2 deployment
+abbr = t2.base.sysben|sb
+args.auto = hosts,threads-list,tags
+flow = t2.conf.deploy : t2.conf.sysben : 2sb.prepare : repeat 2sb.run.base.sysben [[times]]
+[arg]
+	times = 5

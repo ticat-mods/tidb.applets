@@ -4,7 +4,7 @@ help = setup TiDB cluster config for auto deployer
 ###
 help = setup tidb config on 8c16g nodes
 abbr = depl.conf.8c16g.tidb
-trivial = 9
+trivial = 3
 [flow/]
 deploy.set.tidb.config mem-quota-query 1073741824
 deploy.set.tidb.config tikv-client.copr-cache.capacity-mb 0.0
@@ -13,7 +13,7 @@ deploy.set.tidb.config performance.txn-total-size-limit 2147483648
 ### file: deploy.config.16c32g.tidb.tiflow
 ###
 help = setup tidb config on 8c16g nodes
-trivial = 9
+trivial = 3
 [flow/]
 deploy.set.tidb.config mem-quota-query 2147483648
 deploy.set.tidb.config performance.txn-total-size-limit 4294967296
@@ -21,7 +21,7 @@ deploy.set.tidb.config performance.txn-total-size-limit 4294967296
 ### file: deploy.config.4c8g.tikv.tiflow
 ###
 help = setup tikv config on 4c8g nodes
-trivial = 9
+trivial = 3
 [flow/]
 deploy.set.tikv.config server.grpc-concurrency 3
 deploy.set.tikv.config raftstore.apply-pool-size 1
@@ -34,7 +34,7 @@ deploy.set.tikv.config storage.io-rate-limit.max-bytes-per-sec 301465600
 ### file: deploy.config.8c16g.tikv.tiflow
 ###
 help = setup tikv config on 4c8g nodes
-trivial = 9
+trivial = 3
 [flow/]
 deploy.set.tikv.config server.grpc-concurrency 3
 deploy.set.tikv.config raftstore.apply-pool-size 1

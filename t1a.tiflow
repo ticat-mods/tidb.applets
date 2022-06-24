@@ -3,9 +3,40 @@
 help = applets or jobs for topology: client(4c)*1 + tidb&pd(8c)*1 + tikv(4c)*3
 abbr = t1a-c4c+db8c+kv4cx3
 
+
 ### file: t1a.config.deploy.tiflow
 ###
 help = setup cluster config for t1a topology
 abbr = t1a.conf.depl
-trivial = 6
+trivial = 3
 flow = deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
+
+
+### file: t1a.baseline.tpcc.tiflow
+###
+help = tpcc baseline on t1a deployment
+abbr = t1a.base.tpcc
+args.auto = hosts,threads-list,tags
+flow = t1a.conf.deploy : t1.conf.tpcc : 2sb.prepare : repeat 2sb.run.baseline.tpcc [[times]]
+[arg]
+	times = 5
+
+
+### file: t1a.baseline.sysbench.tiflow
+###
+help = SysBench baseline on t1a deployment
+abbr = t1a.base.sysben|sb
+args.auto = hosts,threads-list,tags
+flow = t1a.conf.deploy : t1.conf.sysben : 2sb.prepare : repeat 2sb.run.baseline.sysben [[times]]
+[arg]
+	times = 5
+
+
+### file: t1a.baseline.tpch.tiflow
+###
+help = tpch baseline on t1a deployment
+abbr = t1a.base.tpch
+args.auto = hosts,threads-list,tags
+flow = t1a.conf.deploy : t1.conf.tpch : 2sb.prepare : repeat 2sb.run.baseline.tpch [[times]]
+[arg]
+	times = 5

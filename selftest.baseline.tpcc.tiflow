@@ -1,6 +1,7 @@
 ### file: selftest.baseline.tpcc.tiflow
+###
 help = tpcc baseline selftest
 abbr = selftest.base.tpcc
 tag = selftest
 
-flow = tpcc.conf.min : deploy.auto.conf 127.0.0.1 : 2sb.prepare : 2sb.run.baseline.conf threads=50,100 : repeat 2sb.run.baseline.tpcc 2
+flow = deploy.auto.conf 127.0.0.1 : tpcc.conf.min : 2sb.prepare : 2sb.run.baseline.conf threads=5,10 : repeat 2sb.run.baseline.tpcc 2

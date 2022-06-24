@@ -1,37 +1,43 @@
 help = 2 step bench: prepare => run
-abbr = 2-step-bench|2step|2sb
+abbr = 2step|2sb
 
 
-### file: 2-step-bench.config.tiflow
+### file: 2-step-bench.prepare.config.tiflow
 ###
-
-help = config 2-step-bench behavior
-abbr = 2-step-bench.conf
+help = config `2sb.prepare`
+abbr = 2sb.pp.conf
 tag = config
-
 [arg]
-2sb-env-snapshot-name|env-ss|env = 2sb-latest
-br-backup-wait-secs|br-backup-wait|wait-secs|wait = 2
-
+	2sb-env-snapshot-name|env-ss|env = 2sb-latest
+	br-backup-wait-secs|br-backup-wait|wait-secs|wait = 2
 [arg2env]
-2-step-bench.env.snapshot = 2sb-env-snapshot-name
-br.ssh.backup.wait-secs = br-backup-wait-secs
+	2sb.env.snapshot = 2sb-env-snapshot-name
+	br.ssh.backup.wait-secs = br-backup-wait-secs
+
+
+### file: 2-step-bench.run.config.tiflow
+###
+help = config `2sb.run`
+abbr = 2sb.run.conf
+tag = config
+[arg]
+	2sb-env-snapshot-name|env-ss|env = 2sb-latest
+[arg2env]
+	2sb.env.snapshot = 2sb-env-snapshot-name
 
 
 ### file: selftest.2-step-bench.tiflow
 ###
-
-help = test the `2-step-bench.*` benchmark toolbox
+help = test the `2sb.*` benchmark toolbox
 abbr = selftest.2step|2sb
 tag = selftest
-
+trivial = 1
 [flow/]
-2-step-bench.conf env=selftest-2sb
-2-step-bench.prepare.regulars 127.0.0.1
+	2sb.prepare.regulars host=127.0.0.1 env=selftest-2sb
 
-tpcc.conf     : 2-step-bench.run
-sysbench.conf : 2-step-bench.run
-ycsb.conf     : 2-step-bench.run
+	tpcc.conf     : 2sb.run
+	sysbench.conf : 2sb.run
+	ycsb.conf     : 2sb.run
 
-env.snapshot.rm selftest-2sb
-bench.result.last
+	env.snapshot.rm selftest-2sb
+	bench.result.last

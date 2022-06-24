@@ -1,22 +1,6 @@
-[help/]
-auto deploy, run benchmark then destroy cluster, usage:
-[workload].conf : app.deploy+bench <hosts>'
-[/help]
-
+help = auto deploy, run benchmark then destroy cluster. usage: `[workload].conf : app.deploy+bench <hosts>`
 abbr = app.depl+ben
 
-args.auto = cluster,port-delta,tag,keep-mon,ver
+args.auto = hosts,workload,cluster,port-delta,tag,ver,keep-mon,ssh-pwd,cfm,plain
 
 flow = break.after.gen-tiup-yaml : deploy.auto : tidb.rm+new : [[bench.workload]].load : [[bench.workload]].run : meta.db.up : bench.record : db.rm
-
-[arg]
-hosts|host|h = ''
-workload|wl = tpcc
-
-[arg2env]
-deploy.hosts = hosts
-bench.workload = workload
-
-[env]
-bench.workload = read
-deploy.hosts = read

@@ -1,111 +1,71 @@
 ### file: 2-step-bench.prepare.tiflow
 ###
-
-[help/]
-prepare for run, usage:
-[workload].conf : 2-step-bench.prepare <hosts> : 2-step-bench.run.*
-[/help]
-
+help = prepare for run, usage: [workload].conf : 2sb.prepare <hosts> : 2sb.run.*
 abbr = 2step|2sb.pp
 trivial = 1
-
-[arg]
-deploy-hosts|hosts|host = ''
-br-backup-wait-secs|br-backup-wait|wait-secs|wait = 2
-workload|wl = ''
-2sb-env-snapshot-name|env-ss|env = 2sb-latest
-user-tags|tags|tag = t2
-
-[arg2env]
-deploy.hosts = deploy-hosts
-br.ssh.backup.wait-secs = br-backup-wait-secs
-bench.workload = workload
-2-step-bench.env.snapshot = 2sb-env-snapshot-name
-
-# all keys of `bench.tag.*` will be recorded
-bench.tag.by-user = user-tags
-
-[val2env]
-tidb.backup.use-mv = true
-
-[env]
-bench.workload = read
-
+args.auto = hosts,env-ss,br-backup-wait
 [flow/]
-deploy.auto
-db.rm+new
+	deploy.auto
+	db.rm+new
 
-[[bench.workload]].load
-[[bench.workload]].tag.data
-br.ssh.backup
+	[[bench.workload]].load
+	[[bench.workload]].tag.data
+	br.ssh.backup use-mv=true
 
-db.rm
-meta.db.up
+	db.rm
+	meta.db.up
 
-env.snapshot.save [[2-step-bench.env.snapshot]]
-# 1. if `2sb.run` execute in the same session, the snapshot will not loaded
-#   because value of key `2-step-bench.env.snapshot` is a fake snapshot name.
-# 2. if `2sb.run` execute in another session later, the snapshot will be loaded
-#   because value of key `2-step-bench.env.snapshot` is re-asigned in `2sb.run`
-env.set 2-step-bench.env.snapshot dummy
+	2sb.prepare.conf
+	env.snapshot.save [[2sb.env.snapshot]]
+
+	# 1. if `2sb.run` execute in the same session, the snapshot will not loaded
+	#   because value of key `2sb.env.snapshot` is a fake snapshot name.
+	# 2. if `2sb.run` execute in another session later, the snapshot will be loaded
+	#   because value of key `2sb.env.snapshot` is re-asigned in `2sb.run`
+	env.set 2sb.env.snapshot dummy
 
 
 ### file: 2-step-bench.prepare.regulars.tiflow
 ###
-
-help = auto deploy and prepare regular workloads' data for `2-step-bench.run*`
+help = auto deploy and prepare regular workloads' data for `2sb.run*`
 abbr = 2step.pp.regular|common|rgl
-
-[arg]
-deploy-hosts|hosts|host = ''
-2sb-env-snapshot-name|env-ss|env = 2sb-latest
-
-[arg2env]
-deploy.hosts = deploy-hosts
-2-step-bench.env.snapshot = 2sb-env-snapshot-name
-
-[val2env]
-tidb.backup.use-mv = true
-
+args.auto = hosts,env-ss,br-backup-wait
 [flow/]
-deploy.auto : db.rm+new
+	deploy.auto : db.rm+new
 
-tpcc.conf : tpcc.load : tpcc.tag.data : br.ssh.backup : db.rm+new
-ycsb.conf : ycsb.load : ycsb.tag.data : br.ssh.backup : db.rm+new
-sysbench.conf : sysbench.load : sysbench.tag.data : br.ssh.backup : db.rm
+	tpcc.conf : tpcc.load : tpcc.tag.data : br.ssh.backup : db.rm+new
+	ycsb.conf : ycsb.load : ycsb.tag.data : br.ssh.backup : db.rm+new
+	sysbench.conf : sysbench.load : sysbench.tag.data : br.ssh.backup use-mv=true : db.rm
 
-meta.db.up
-env.rm bench.workload
+	meta.db.up
+	env.rm bench.workload
 
-env.snapshot.save [[2-step-bench.env.snapshot]]
-# 1. if `2sb.run` execute in the same session, the snapshot will not loaded
-#   because value of key `2-step-bench.env.snapshot` is a fake snapshot name.
-# 2. if `2sb.run` execute in another session later, the snapshot will be loaded
-#   because value of key `2-step-bench.env.snapshot` is re-asigned in `2sb.run`
-env.set 2-step-bench.env.snapshot dummy
+	2sb.prepare.conf
+	env.snapshot.save [[2sb.env.snapshot]]
+
+	# 1. if `2sb.run` execute in the same session, the snapshot will not loaded
+	#   because value of key `2sb.env.snapshot` is a fake snapshot name.
+	# 2. if `2sb.run` execute in another session later, the snapshot will be loaded
+	#   because value of key `2sb.env.snapshot` is re-asigned in `2sb.run`
+	env.set 2sb.env.snapshot dummy
 
 
 ### file: 2-step-bench.prepare.regulars.10g.tiflow
 ###
-
 help = auto deploy and prepare 10g data for common workloads
 abbr = 2step.pp.regular.10g
-
-args.auto = hosts
-
+args.auto = hosts,env-ss,br-backup-wait
 [flow/]
-tpcc.conf wh=60 lt=16
-ycsb.conf count=4000000 lt=16
-sysbench.conf tables=100 table-size=300000 lt=16
-2-step-bench.prepare.regulars
+	tpcc.conf wh=60 lt=16
+	ycsb.conf count=4000000 lt=16
+	sysbench.conf tables=100 table-size=300000 lt=16
+	2sb.prepare.regulars
 
 
 ### file: 2-step-bench.prepare.tpcc.300wh.tiflow
 ###
-
-help = auto deploy and prepare tpcc 300wh data for `2-step-bench.run*`
+help = auto deploy and prepare tpcc 300wh data for `2sb.run*`
 abbr = 2step.pp.tpcc.50g
-
-args.auto = hosts
-
-flow = tpcc.conf wh=300 lt=16 : 2-step-bench.prepare
+args.auto = hosts,env-ss,br-backup-wait
+[flow/]
+	tpcc.conf wh=300 lt=16 : 2sb.prepare
