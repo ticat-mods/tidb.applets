@@ -11,7 +11,7 @@ flow = t2.limit-kv-cpu.tpcc times=[[times]] : t2.limit-kv-cpu.sysbench times=[[t
 ### file: t2.limit-tikv-cpu.tpcc.tiflow
 ###
 help = test if we could use 7.5c/7.75c for 7c tikv node with tpcc
-abbr = t2.limit-kv-cpu.tpcc
+abbr = t2.lkvu.tpcc
 trivial = 1
 
 [arg]
@@ -32,7 +32,7 @@ repeat t2.limit-kv-cpu.tpcc.run [[times]]
 ### file: t2.limit-tikv-cpu.tpcc.run.tiflow
 ###
 help = run benchmark: test if we could use 7.5c/7.75c for 8c tikv node with tpcc
-abbr = t2.limit-kv-cpu.tpcc.run
+abbr = t2.lkvu.tpcc.run
 trivial = 1
 
 flow = ** t2.conf.deploy : t2.conf.tpcc : 2sb.run.limit-tikv-cpu [[*bench.tikv-cpu-limit-list*]] **
@@ -44,7 +44,7 @@ bench.tikv-cpu-limit-list = read
 ### file: t2.limit-tikv-cpu.sysbench.tiflow
 ###
 help = test if we could use 7.5c/7.75c for 8c tikv node with SysBench
-abbr = t2.limit-kv-cpu.sb
+abbr = t2.lkvu.sb
 trivial = 1
 
 [arg]
@@ -58,14 +58,14 @@ deploy.hosts = hosts
 
 [flow/]
 t2.conf.deploy : t2.conf.sysben
-2sb.prepare wait-secs-before-backup=600
+2sb.prepare
 repeat t2.limit-kv-cpu.sysbench.run [[times]]
 
 
 ### file: t2.limit-tikv-cpu.sysbench.run.tiflow
 ###
 help = run benchmark: test if we could use 7.5c/7.75c for 8c tikv node with SysBench
-abbr = t2.limit-kv-cpu.sysben|sb.run
+abbr = t2.lkvu.sysben|sb.run
 trivial = 1
 
 [env]

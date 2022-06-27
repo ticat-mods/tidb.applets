@@ -1,12 +1,12 @@
 ### file: t2a.tiflow
 ###
-help = applets or jobs for topology: client(4c)*1 + tidb&pd(8c)*1 + tikv(4c)*3
+help = applets or jobs for deployment: client(4c)*1 + tidb&pd(8c)*1 + tikv(4c)*3
 abbr = t2a-c4c+db8c+kv4cx3
 
 
 ### file: t2a.config.deploy.tiflow
 ###
-help = setup cluster config for t2a topology
+help = setup cluster config for t2a deployment
 abbr = t2a.conf.depl
 trivial = 3
 flow = deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb

@@ -1,11 +1,11 @@
 ### file: t2.tiflow
 ###
-help = applets or jobs for topology: client(8c)*1 + tidb(16c)*1 + tikv&pd(8c)*3
+help = applets or jobs for deployment: client(8c)*1 + tidb(16c)*1 + tikv&pd(8c)*3
 abbr = t2-c8c+db16c+kv8cx3
 
 ### file: t2.config.deploy.tiflow
 ###
-help = setup cluster config for t2 topology
+help = setup cluster config for t2 deployment
 abbr = t2.conf.depl
 trivial = 3
 flow = deploy.hint.pd-with-tikv : deploy.conf.8c16g.tikv : deploy.conf.16c32g.tidb
