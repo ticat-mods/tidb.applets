@@ -16,27 +16,21 @@ flow = deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
 ###
 help = tpcc baseline on t1a deployment
 abbr = t1a.base.tpcc
-args.auto = hosts,threads-list,tags
+args.auto = hosts,threads-list,tags,times=3
 flow = t1a.conf.deploy : t1.conf.tpcc : 2sb.prepare : repeat 2sb.run.baseline.tpcc [[times]]
-[arg]
-	times = 5
 
 
 ### file: t1a.baseline.sysbench.tiflow
 ###
 help = SysBench baseline on t1a deployment
 abbr = t1a.base.sysben|sb
-args.auto = hosts,threads-list,tags
+args.auto = hosts,threads-list,tags,times=3
 flow = t1a.conf.deploy : t1.conf.sysben : 2sb.prepare : repeat 2sb.run.baseline.sysben [[times]]
-[arg]
-	times = 5
 
 
 ### file: t1a.baseline.tpch.tiflow
 ###
 help = tpch baseline on t1a deployment
 abbr = t1a.base.tpch
-args.auto = hosts,threads-list,tags
+args.auto = hosts,threads-list,tags,times=3
 flow = t1a.conf.deploy : t1.conf.tpch : 2sb.prepare : repeat 2sb.run.baseline.tpch [[times]]
-[arg]
-	times = 5

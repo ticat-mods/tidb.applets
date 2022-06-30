@@ -2,10 +2,8 @@
 ###
 help = test if we could use 3.5c/3.75c for 4c tikv
 abbr = t1.limit-kv-cpu|lkvu
-args.auto = hosts,tags,cpu-limit-list,tpcc-threads,sysbench-threads
+args.auto = hosts,tags,cpu-limit-list,tpcc-threads,sysbench-threads,times=3
 flow = t1.limit-kv-cpu.tpcc times=[[times]] : t1.limit-kv-cpu.sysbench times=[[times]]
-[arg]
-	times = 5
 
 
 ### file: selftest.t1.limit-tikv-cpu.tiflow
@@ -39,9 +37,7 @@ bench.result.last
 help = test if we could use 3.5c/3.75c for 4c tikv node with tpcc
 abbr = t1.lkvu.tpcc
 trivial = 1
-args.auto = hosts,tags,cpu-limit-list
-[arg]
-	times = 5
+args.auto = hosts,tags,cpu-limit-list,times=3
 [flow/]
 	t1.conf.deploy : t1.conf.tpcc : 2sb.prepare : repeat t1.limit-kv-cpu.tpcc.run [[times]]
 
@@ -68,7 +64,7 @@ trivial = 1
 [arg]
 hosts|h = ''
 cpu-limit-list|limits|l = 760%,775%,800%
-times = 5
+times = 3
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list

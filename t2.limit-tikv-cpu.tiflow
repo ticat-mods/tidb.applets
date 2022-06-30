@@ -2,10 +2,8 @@
 ###
 help = test if we could use 7.5c/7.75c for 8c tikv
 abbr = t2.limit-kv-cpu|lkvu
-args.auto = hosts,tags,tpcc-threads,sysbench-threads,limits
+args.auto = hosts,tags,tpcc-threads,sysbench-threads,limits,times=3
 flow = t2.limit-kv-cpu.tpcc times=[[times]] : t2.limit-kv-cpu.sysbench times=[[times]]
-[arg]
-	times = 5
 
 
 ### file: t2.limit-tikv-cpu.tpcc.tiflow
@@ -17,7 +15,7 @@ trivial = 1
 [arg]
 hosts|h = ''
 cpu-limit-list|limits|l = 760%,775%,800%
-times = 5
+times = 3
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list
@@ -50,7 +48,7 @@ trivial = 1
 [arg]
 hosts|h = ''
 cpu-limit-list|limits|l = 760%,775%,800%
-times = 5
+times = 3
 
 [arg2env]
 bench.tikv-cpu-limit-list = cpu-limit-list

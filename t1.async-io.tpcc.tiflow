@@ -2,7 +2,7 @@
 ###
 help = compare async io performance on t1 deployment
 abbr = t1.aio.tpcc
-args.auto = hosts,tags,io-sizes,times=5
+args.auto = hosts,tags,io-sizes,times=3
 flow = t1.conf.deploy : t1.conf.tpcc : 2sb.prepare : repeat 2sb.run.aio.cmp [[times]]
 
 

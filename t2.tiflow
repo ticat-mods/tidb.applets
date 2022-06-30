@@ -91,17 +91,13 @@ bench.workload = tpch
 ###
 help = tpcc baseline on t2 deployment
 abbr = t2.base.tpcc
-args.auto = hosts,threads-list,tags
+args.auto = hosts,threads-list,tags,times=3
 flow = t2.conf.deploy : t2.conf.tpcc : 2sb.prepare : repeat 2sb.run.baseline.tpcc [[times]]
-[arg]
-	times = 5
 
 
 ### file: t2.baseline.sysbench.tiflow
 ###
 help = SysBench baseline on t2 deployment
 abbr = t2.base.sysben|sb
-args.auto = hosts,threads-list,tags
+args.auto = hosts,threads-list,tags,times=3
 flow = t2.conf.deploy : t2.conf.sysben : 2sb.prepare : repeat 2sb.run.base.sysben [[times]]
-[arg]
-	times = 5
