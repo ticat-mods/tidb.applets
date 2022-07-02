@@ -13,7 +13,7 @@ abbr = 2sb.run.base.conf
 help = run tpcc with threads-list
 abbr = 2sb.run.base.tpcc
 args.auto = tags,threads-list
-flow = bench.add-tag baseline : 2sb.run.base.conf : ** tpcc.conf t=[[*bench.threads-list*]] : 2sb.run **
+flow = bench.add-tag tag=baseline group=bench-type : 2sb.run.base.conf : ** tpcc.conf t=[[*bench.threads-list*]] : 2sb.run **
 
 
 ### file: 2-step-bench.run.baseline.sysbench.tiflow
@@ -22,7 +22,7 @@ help = run tpcc with threads-list
 abbr = 2sb.run.base.sysben|sb
 args.auto = tags,threads-list
 [flow/]
-	bench.add-tag baseline : 2sb.run.base.conf
+	bench.add-tag tag=baseline group=bench-type : 2sb.run.base.conf
 
 	sb.conf test=oltp_insert           : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
 	sb.conf test=oltp_update_index     : ** sb.conf t=[[*bench.threads-list*]] : 2sb.run **
@@ -39,4 +39,4 @@ args.auto = tags,threads-list
 help = run tpch with threads-list
 abbr = 2sb.run.base.tpch
 args.auto = tags,threads-list
-flow = bench.add-tag baseline : 2sb.run.base.conf : ** tpch.conf t=[[*bench.threads-list*]] : 2sb.run **
+flow = bench.add-tag tag=baseline group=bench-type : 2sb.run.base.conf : ** tpch.conf t=[[*bench.threads-list*]] : 2sb.run **

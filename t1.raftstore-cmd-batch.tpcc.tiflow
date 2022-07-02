@@ -35,5 +35,6 @@ cmd-batch-max|batch = 1
 [flow/]
 deploy.set.tikv.conf raftstore.cmd-batch-concurrent-ready-max-count [[cmd-batch-max]]
 deploy.auto
-bench.add-tag bench-rs-cmd-batch,cmd-batch-[[cmd-batch-max]]
+bench.add-tag tags=bench-rs-cmd-batch,cmd-batch-[[cmd-batch-max]] group=bench-type
+
 2sb.run

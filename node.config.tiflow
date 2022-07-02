@@ -12,7 +12,7 @@ deploy.set.tidb.config performance.txn-total-size-limit 2147483648
 
 ### file: deploy.config.16c32g.tidb.tiflow
 ###
-help = setup tidb config on 8c16g nodes
+help = setup tidb config on 16c32g nodes
 trivial = 3
 [flow/]
 deploy.set.tidb.config mem-quota-query 2147483648

@@ -6,7 +6,7 @@ trivial = 1
 cpu-limit|limit|l = ''
 
 [flow/]
-bench.add-tag bench-limit-kv-cpu,tikv-cpu-[[cpu-limit]]
+bench.add-tag tags=bench-limit-kv-cpu,tikv-cpu-[[cpu-limit]] group=bench-type
 deploy.set.tikv.res cpu_quota [[cpu-limit]]
 deploy.auto
 2sb.run

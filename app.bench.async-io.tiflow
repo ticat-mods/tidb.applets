@@ -1,0 +1,37 @@
+### file: app.bench.async-io.tiflow
+###
+help = bench async io performance
+abbr = app.ben.aio
+
+args.auto = hosts,tags,io-sizes,times=3,workload|wl=tpcc
+
+flow = 2sb.prepare : repeat 2sb.run.aio.cmp [[times]]
+
+[arg2env]
+	bench.workload = workload
+	bench.times = times
+
+
+### file: 2-step-bench.run.async-io.compare.tiflow
+###
+help = compare the performance with different async io config
+abbr = 2sb.run.aio.cmp
+flow = ** 2sb.run.aio [[*bench.store-io-threads-list*]] **
+[arg]
+	store-io-threads-list|io-sizes = 0,1
+[arg2env]
+	bench.store-io-threads-list = store-io-threads-list
+
+
+### file: 2-step-bench.run.async-io.tiflow
+###
+help = bench performace of specify tikv async io config
+abbr = 2sb.run.aio
+trivial = 1
+[arg]
+	store-io-pool-size = 0
+[flow/]
+	deploy.set.tikv.conf raftstore.store-io-pool-size [[store-io-pool-size]]
+	deploy.auto
+	bench.add-tag tags=bench-aio,aio-pool-size-[[store-io-pool-size]] group=bench-type
+	2sb.run
