@@ -9,7 +9,7 @@ abbr = t1a-c4c+db8c+kv4cx3
 help = setup cluster config for t1a deployment
 abbr = t1a.conf.depl
 trivial = 3
-flow = deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
+flow = deploy.hint.pd-with-tikv false : deploy.hint.tikv-cnt 3 : deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
 
 
 ### file: t1a.baseline.tpcc.tiflow
