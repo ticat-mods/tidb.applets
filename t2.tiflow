@@ -8,7 +8,7 @@ abbr = t2-c8c+db16c+kv8cx3
 help = setup cluster config for t2 deployment
 abbr = t2.conf.depl
 trivial = 3
-flow = deploy.hint.pd-with-tikv : deploy.hint.tikv-cnt 3 : deploy.conf.8c16g.tikv : deploy.conf.16c32g.tidb
+flow = deploy.hint.pd-with-tikv : deploy.hint.tikv-cnt per-node=1 : deploy.conf.8c16g.tikv : deploy.conf.16c32g.tidb
 
 
 ### file: t2.config.tpcc.tiflow
