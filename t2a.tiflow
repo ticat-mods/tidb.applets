@@ -9,7 +9,7 @@ abbr = t2a-c4c+db8c+kv4cx3
 help = setup cluster config for t2a deployment
 abbr = t2a.conf.depl
 trivial = 3
-flow = deploy.hint.pd-with-tikv false : deploy.hint.tikv-cnt per-node=1 : deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
+flow = deploy.hint.pd-with-tikv false : deploy.hint.tikv-cnt per-node=1 : deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb : bench.add-tag tag=t2a group=instance-type
 
 
 ### file: t2a.baseline.tpcc.tiflow

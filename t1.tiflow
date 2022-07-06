@@ -9,7 +9,7 @@ abbr = t1-c4c+db8c+kv4cx3
 help = setup cluster config for t1 deployment
 abbr = t1.conf.depl
 trivial = 1
-flow = deploy.hint.pd-with-tikv : deploy.hint.tikv-cnt per-node=1 : deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb
+flow = deploy.hint.pd-with-tikv : deploy.hint.tikv-cnt per-node=1 : deploy.conf.4c8g.tikv : deploy.conf.8c16g.tidb : bench.add-tag tag=t1 group=instance-type
 
 
 ### file: t1.config.tpcc.tiflow
